@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="罗马手册">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>罗马初访手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap">
+<style>
+/* Layout: one phone-width column; Pompeian-red meander band under the header, carved travertine street-plaque names, a schematic Tiber map for distances. */
+:root{
+  --bg:#F2EFE9; --surface:#FFFFFF; --surface-2:#E6E1D7; --ink:#231C17; --muted:#6A6058; --line:#DDD5C8;
+  --red:#9E2A20; --blue:#2F5D7C; --turq:#5A7A3E; --ok:#3C7A3E; --warn:#9A5B00; --bad:#B3261E;
+  --sign-bg:#F4EFE4; --sign-fg:#5E1A14; --sign-rule:#B9AB92; --plate:#5A7A3E; --plate-fg:#FFFFFF;
+  --river:#A9C3C9; --map-bg:#ECE7DE; --map-ink:#8A8076;
+  --lA:#E3722B; --lB:#2E63A8; --lC:#2E9A57;
+  --sky:#E3E8EA; --stone:#F1E9DA; --stone-2:#D6C7AC; --shade:#A8977A; --dome:#8E9A8A; --roof:#B4583A; --hill:#7E9466; --night:#2A2235; --star:#F2C66B; --tile:#C98A2B;
+  --f-display:"Noto Serif SC","Songti SC",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-sign:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#16120F; --surface:#201B17; --surface-2:#2C2620; --ink:#EEE8E0; --muted:#ACA296; --line:#3A322A;
+  --red:#E57B6C; --blue:#8DB4D2; --turq:#9DBC7A; --ok:#6CC383; --warn:#E5A445; --bad:#FF7B72;
+  --sign-bg:#E9E1D2; --sign-fg:#5E1A14; --sign-rule:#A7987D; --plate:#5F8243; --plate-fg:#FFFFFF;
+  --river:#244049; --map-bg:#1B1713; --map-ink:#867C70;
+  --lA:#F08A45; --lB:#4F82C7; --lC:#3FB46B;
+  --sky:#232A30; --stone:#DCD3C3; --stone-2:#A8987D; --shade:#6F6350; --dome:#6D7A6C; --roof:#BD6447; --hill:#3F5233; --night:#141019; --star:#E9BE5E; --tile:#C98A2B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#16120F; --surface:#201B17; --surface-2:#2C2620; --ink:#EEE8E0; --muted:#ACA296; --line:#3A322A;
+  --red:#E57B6C; --blue:#8DB4D2; --turq:#9DBC7A; --ok:#6CC383; --warn:#E5A445; --bad:#FF7B72;
+  --sign-bg:#E9E1D2; --sign-fg:#5E1A14; --sign-rule:#A7987D; --plate:#5F8243; --plate-fg:#FFFFFF;
+  --river:#244049; --map-bg:#1B1713; --map-ink:#867C70;
+  --lA:#F08A45; --lB:#4F82C7; --lC:#3FB46B;
+  --sky:#232A30; --stone:#DCD3C3; --stone-2:#A8987D; --shade:#6F6350; --dome:#6D7A6C; --roof:#BD6447; --hill:#3F5233; --night:#141019; --star:#E9BE5E; --tile:#C98A2B; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+p{margin:0}
+a{color:var(--blue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.num{font-family:var(--f-sign);font-variant-numeric:tabular-nums}
+
+/* header with İznik tile band */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface)}
+.top::after{content:"";display:block;height:8px;background:
+  linear-gradient(90deg,var(--sign-bg) 0 2px,transparent 2px) 0 0/12px 8px,
+  linear-gradient(0deg,var(--sign-bg) 0 2px,transparent 2px 6px,var(--sign-bg) 6px) 0 0/12px 8px,var(--red)}
+.top-in{max-width:680px;margin:0 auto;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;flex-direction:column;min-width:0}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:.02em}
+.brand span{font-size:11px;color:var(--muted);letter-spacing:.08em;font-family:var(--f-sign);text-transform:uppercase}
+.hotel-chip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px 6px 9px;font-size:13px;cursor:pointer;min-width:0;max-width:56%}
+.hotel-chip svg{flex:none}
+.hotel-chip b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hotel-chip.example b{color:var(--muted)}
+
+main{max-width:680px;margin:0 auto;padding-block:16px calc(96px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section.tab{display:flex;flex-direction:column;gap:16px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:8px}
+.sec-h h2{font-size:22px;font-weight:900}
+.sec-h small{color:var(--muted);font-size:12px}
+.lead{color:var(--muted);font-size:14px}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;margin-inline:-2px;padding-inline:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
+.toggle input{appearance:none;width:38px;height:22px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);position:relative;cursor:pointer;flex:none;margin:0}
+.toggle input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--muted);transition:transform .15s}
+.toggle input:checked{background:var(--blue);border-color:var(--blue)}
+.toggle input:checked::after{transform:translateX(16px);background:var(--surface)}
+
+.rules{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.rules h3{font-size:16px}
+.rules ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.meter{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.meter-label{font-size:12px;color:var(--muted)}
+.meter-bar{display:grid;grid-template-columns:2fr 2fr 2fr;border-radius:8px;overflow:hidden;font-size:12px;text-align:center;line-height:1.3}
+.meter-bar div{padding:6px 4px}
+.meter-bar .m1{background:color-mix(in srgb,var(--ok) 22%,var(--surface))}
+.meter-bar .m2{background:color-mix(in srgb,var(--warn) 22%,var(--surface))}
+.meter-bar .m3{background:color-mix(in srgb,var(--bad) 24%,var(--surface))}
+.meter-bar b{display:block;font-family:var(--f-sign);font-size:15px}
+
+.list{display:flex;flex-direction:column;gap:12px}
+.place{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.place-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.sign{display:inline-block;background:var(--sign-bg);color:var(--sign-fg);font-family:var(--f-sign);font-weight:700;font-size:19px;line-height:1.15;letter-spacing:.08em;text-transform:uppercase;padding:6px 13px 5px;border-radius:2px;box-shadow:inset 0 0 0 3px var(--sign-bg),inset 0 0 0 4px var(--sign-rule),0 1px 0 var(--sign-rule);word-break:break-word}
+.zh{font-weight:500;font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;color:var(--muted)}
+.addr{display:inline-flex;align-items:center;gap:6px}
+.plate{display:inline-block;background:var(--plate);color:var(--plate-fg);font-family:var(--f-sign);font-weight:700;font-size:13px;line-height:1;padding:3px 7px 2px;border-radius:4px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:999px;border:1px solid currentColor;color:var(--red)}
+.facts{display:grid;gap:6px;margin:0}
+.facts div{display:grid;grid-template-columns:4.2em 1fr;gap:8px}
+.facts dt{color:var(--muted);font-size:13px;padding-top:1px}
+.facts dd{margin:0;min-width:0}
+details.more summary{cursor:pointer;color:var(--blue);font-size:14px;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:" ▾"}
+details.more[open] summary::after{content:" ▴"}
+details.more .facts{margin-top:8px}
+
+.dist{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:8px 12px;min-width:0}
+.dist .km{font-family:var(--f-sign);font-weight:700;font-size:22px;line-height:1;font-variant-numeric:tabular-nums;flex:none}
+.dist .how{display:flex;flex-direction:column;font-size:12.5px;line-height:1.4;min-width:0}
+.dist .how b{font-size:13px}
+.dist.walk .km,.dist.walk .how b{color:var(--ok)}
+.dist.transit .km,.dist.transit .how b{color:var(--blue)}
+.dist.far .km,.dist.far .how b{color:var(--muted)}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 12px;font-size:13.5px;text-decoration:none;color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fav{border:none;background:none;padding:4px;cursor:pointer;color:var(--muted);flex:none;display:flex;align-items:center;gap:4px;font-size:12px}
+.fav[aria-pressed="true"]{color:var(--red)}
+.fav[aria-pressed="true"] svg path{fill:currentColor}
+
+.verdict{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px;flex:none}
+.v-ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.v-warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.v-meh{background:var(--surface-2);color:var(--muted)}
+.v-skip{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.hype-row{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.hype-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.hype-head h3{font-size:16px;font-family:var(--f-body);font-weight:700}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h3{font-size:17px}
+.panel ul,.panel ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.note{font-size:13px;color:var(--muted)}
+.warnbox{border-left:3px solid var(--warn);padding:8px 12px;background:color-mix(in srgb,var(--warn) 9%,var(--surface));border-radius:0 10px 10px 0;font-size:14px}
+
+.hotel-now{display:flex;gap:12px;align-items:center}
+.hotel-now .pin{width:40px;height:40px;border-radius:12px;background:var(--ink);color:var(--bg);display:grid;place-items:center;flex:none}
+.hotel-now strong{display:block;font-size:16px}
+.hotel-now span{font-size:12.5px;color:var(--muted)}
+label.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+.input{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:inherit;font-size:15px}
+textarea.input{min-height:64px;resize:vertical}
+.msg{font-size:13px;border-radius:8px;padding:6px 10px}
+.msg.err{color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.msg.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.msg.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,transparent)}
+.mapwrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--map-bg)}
+.mapwrap svg{display:block;width:100%;height:auto;touch-action:manipulation;cursor:crosshair}
+.map-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.map-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;vertical-align:-1px}
+.pending{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
+.pending .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.pending .btn.ghost{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 50%,transparent)}
+.sel-card{display:flex;flex-direction:column;gap:10px}
+.rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:11px 14px;border-top:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%}
+.row:first-child{border-top:0}
+.row:hover{background:var(--bg)}
+.row .rn{font-weight:500;min-width:0}
+.row .rn small{display:block;color:var(--muted);font-weight:400;font-size:12px;font-family:var(--f-sign);letter-spacing:.03em;text-transform:uppercase}
+.row .rd{text-align:right;font-family:var(--f-sign);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.row .rd small{display:block;font-family:var(--f-body);font-weight:400;font-size:11.5px;color:var(--muted)}
+.row.walk .rd{color:var(--ok)}.row.transit .rd{color:var(--blue)}.row.far .rd{color:var(--muted)}
+.preset-chips{display:flex;flex-wrap:wrap;gap:8px}
+
+.day{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.day-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.day-h .dn{font-family:var(--f-sign);font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.day-h h3{font-size:18px}
+.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;counter-reset:s}
+.stops li{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line);counter-increment:s}
+.stops li:first-child{border-top:0}
+.stops li::before{content:counter(s);font-family:var(--f-sign);font-weight:700;color:var(--muted)}
+.stops .sd{font-family:var(--f-sign);font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:300px}
+th,td{padding:9px 12px;text-align:left;border-top:1px solid var(--line)}
+thead th{border-top:0;background:var(--bg);font-size:12px;color:var(--muted);font-weight:500}
+td.n{font-family:var(--f-sign);font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.line{display:inline-grid;place-items:center;min-width:30px;height:24px;padding:0 6px;border-radius:6px;font-family:var(--f-sign);font-weight:700;color:#fff;font-size:14px;margin-right:6px;vertical-align:middle;background:var(--lt3)}
+.lA{background:var(--lA)}.lB{background:var(--lB)}.lC{background:var(--lC)}
+
+.phone{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.phone:first-of-type{border-top:0}
+.phone .pn{font-family:var(--f-sign);font-weight:700;font-size:20px;user-select:all;font-variant-numeric:tabular-nums}
+.phone .pl{font-size:13px;color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:4.8em 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.timeline li:first-child{border-top:0}
+.timeline .yr{font-family:var(--f-sign);font-weight:700;font-size:17px;color:var(--red);font-variant-numeric:tabular-nums}
+.timeline .see{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.word{background:var(--bg);border-radius:10px;padding:8px 10px}
+.word b{display:block;font-family:var(--f-sign);font-size:18px;letter-spacing:.02em}
+.word span{font-size:12.5px;color:var(--muted)}
+
+/* route + top 10 */
+.route-head{display:flex;flex-direction:column;gap:8px}
+.route-sum{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.route-sum b{font-family:var(--f-sign);font-size:18px;color:var(--ink);font-variant-numeric:tabular-nums}
+.day-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.day-tabs .chip{text-align:center;padding:9px 10px;line-height:1.3}
+.day-tabs .chip small{display:block;font-size:12px;opacity:.75}
+.illus{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;max-width:100%}
+.stop-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 12px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stop-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-inline:4px}
+.stop-no{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:var(--surface);font-family:var(--f-sign);font-weight:700;font-size:17px;flex:none}
+.stop-body{display:flex;flex-direction:column;gap:10px;padding-inline:4px}
+.stop-time{font-family:var(--f-sign);font-weight:600;font-size:15px;color:var(--blue);letter-spacing:.02em}
+.leg{margin-left:19px;border-left:2px dashed var(--line);padding:10px 0 10px 18px;font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.leg b{color:var(--ink);font-family:var(--f-sign);font-size:15px;font-variant-numeric:tabular-nums}
+.top10{display:flex;flex-direction:column;gap:10px}
+.t10{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:2.4em 1fr;gap:4px 12px;min-width:0}
+.t10 .rk{font-family:var(--f-sign);font-weight:700;font-size:30px;line-height:1;color:var(--red);font-variant-numeric:tabular-nums;grid-row:span 2}
+.t10 .rk.low{color:var(--muted)}
+.t10 .hd{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;min-width:0}
+.t10 h3{font-size:16px;font-family:var(--f-body);font-weight:700}
+.t10 .st{color:var(--warn);letter-spacing:.12em;font-size:14px}
+.t10 .st i{font-style:normal;color:var(--line)}
+.t10 .bd{display:flex;flex-direction:column;gap:8px;min-width:0}
+.trap{border-left:3px solid var(--bad);padding:4px 10px;background:color-mix(in srgb,var(--bad) 7%,var(--surface));border-radius:0 8px 8px 0;font-size:14px}
+.trap b{color:var(--bad)}
+.lounge{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-top:1px solid var(--line)}
+.lounge:first-of-type{border-top:0}
+.lounge b{font-size:15px}
+.lounge .lt{font-family:var(--f-sign);font-weight:700;font-size:13px;letter-spacing:.04em;padding:2px 8px;border-radius:6px;background:var(--surface-2);white-space:nowrap;align-self:start}
+.lounge .lt.go{background:color-mix(in srgb,var(--blue) 16%,transparent);color:var(--blue)}
+.lounge span.ld{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
+.subh{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-top:4px}
+
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line)}
+.tabs-in{max-width:680px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.tabbtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;font-size:11.5px;color:var(--muted);cursor:pointer}
+.tabbtn svg{width:24px;height:24px}
+.tabbtn[aria-selected="true"]{color:var(--red);font-weight:700}
+.tabbtn.center span.ring{display:grid;place-items:center;width:40px;height:30px;border-radius:10px;background:var(--surface-2)}
+.tabbtn.center[aria-selected="true"] span.ring{background:var(--red);color:var(--surface)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top"><div class="top-in">
+  <div class="brand"><h1>罗马初访手册</h1><span>Roma · 2026 秋冬</span></div>
+  <button class="hotel-chip" id="hotelChip" type="button" aria-label="设置酒店位置">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+    <b id="hotelChipText">酒店</b>
+  </button>
+</div></header>
+
+<main>
+<!-- ============ 美食 ============ -->
+<section class="tab" id="tab-food" aria-labelledby="h-food">
+  <div class="sec-h"><h2 id="h-food">美食</h2><small>本地人常去 · 口碑稳定</small></div>
+  <div class="rules">
+    <h3>吃饭三条铁律</h3>
+    <ol>
+      <li><b>特莱维喷泉、纳沃纳广场、梵蒂冈门口一圈的餐厅不进</b>，尤其是门口拉客、多国语言配图菜单、“tourist menu”的店。往旁边走两条街再找。</li>
+      <li><b>先看价格再点</b>：说“今天没菜单”的店直接走。账单上每人约 €2–3 的 <b>coperto（餐位费）</b>是合法的；如果另外又收 <b>servizio（服务费）</b>，就不用再给小费。</li>
+      <li>罗马人吃饭晚：午饭约 13:00–15:00，晚饭 19:30 以后。18:00 就营业的多半是做游客生意的。热门 trattoria 提前一两天订位。</li>
+    </ol>
+    <div class="meter">
+      <span class="meter-label">用一杯浓缩咖啡 espresso 判断是不是游客价（大致价格）</span>
+      <div class="meter-bar" role="img" aria-label="站在吧台喝约 1.2 到 1.5 欧元，坐下有服务约 2.5 到 4 欧元，景点广场露天座 5 欧元以上">
+        <div class="m1"><b>€1.2–1.5</b>站在吧台喝</div>
+        <div class="m2"><b>€2.5–4</b>坐下有服务</div>
+        <div class="m3"><b>€5+</b>景点广场露天座</div>
+      </div>
+    </div>
+  </div>
+  <div class="chips" id="foodChips" role="group" aria-label="美食分类"></div>
+  <label class="toggle"><input type="checkbox" id="foodNear"> 离酒店近的排前面</label>
+  <div class="list" id="foodList"></div>
+</section>
+
+<!-- ============ 景点 ============ -->
+<section class="tab" id="tab-sights" aria-labelledby="h-sights" hidden>
+  <div class="sec-h"><h2 id="h-sights">景点</h2><small>门票为 2026 年资料</small></div>
+  <div class="warnbox"><b>2026 年新规</b>：特莱维喷泉近看白天收费 €2（2 月起）；万神殿门票 7 月起从 €5 涨到 €7。斗兽场必须<b>实名</b>在官网提前订票，梵蒂冈博物馆<b>周日关门</b>（每月最后一个周日除外）。冬季斗兽场 16:30 就关门。</div>
+  <div class="chips" id="sightChips" role="group" aria-label="景点分类"></div>
+  <label class="toggle" id="sightNearWrap"><input type="checkbox" id="sightNear"> 离酒店近的排前面</label>
+  <div class="list" id="sightList"></div>
+</section>
+
+<!-- ============ 距离 ============ -->
+<section class="tab" id="tab-dist" aria-labelledby="h-dist" hidden>
+  <div class="sec-h"><h2 id="h-dist">离酒店多远</h2><small>直线距离 × 1.3 估算路程</small></div>
+
+  <div class="panel" id="hotelPanel">
+    <div class="hotel-now">
+      <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7z" fill="currentColor"/></svg></div>
+      <div><strong id="hotelName">—</strong><span id="hotelCoord"></span></div>
+    </div>
+    <label class="fld" for="hotelInput">粘贴酒店坐标，或 Google 地图的完整链接
+      <textarea class="input" id="hotelInput" placeholder="例如 41.8986, 12.4769"></textarea>
+    </label>
+    <label class="fld" for="hotelLabel">酒店名称（可不填）
+      <input class="input" id="hotelLabel" placeholder="例如 Hotel Artemide">
+    </label>
+    <div class="actions"><button class="btn primary" id="hotelSave" type="button">保存为我的酒店</button></div>
+    <div id="hotelMsg" class="msg" hidden></div>
+    <details class="more">
+      <summary>怎么拿到酒店坐标？</summary>
+      <ol style="margin-top:8px">
+        <li><b>Google 地图 App</b>：搜到酒店后，在酒店位置上<b>长按</b>，屏幕上方搜索框会出现一串数字（如 41.8986, 12.4769），点一下复制，粘贴到上面。</li>
+        <li><b>苹果地图</b>：在酒店位置长按放一个大头针，往上滑信息卡，能看到“坐标”，长按复制。</li>
+        <li><b>Booking / 携程</b>：打开酒店页面的地图，用 Google 地图打开，再按第 1 步长按。</li>
+        <li>分享出来的 <span class="num">maps.app.goo.gl</span> 短链接里没有坐标，用不了；在浏览器打开后，地址栏里的长链接可以用。</li>
+      </ol>
+    </details>
+    <div>
+      <p class="note" style="margin-bottom:8px">还没订酒店？先选个大致区域：</p>
+      <div class="preset-chips" id="presets"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>市中心示意图</h3>
+    <p class="note">点地图上的点查看距离；点空白处可以把酒店设在那里。河道和位置为示意，导航请用下方按钮打开地图 App。</p>
+    <div class="mapwrap"><svg id="map" role="img" aria-label="罗马市中心示意图，标出酒店、餐厅和景点"></svg></div>
+    <div id="pending" class="pending" hidden></div>
+    <div class="map-legend">
+      <span><i style="background:var(--red);border-radius:50%"></i>餐厅</span>
+      <span><i style="background:var(--blue)"></i>景点</span>
+      <span><i style="background:var(--ink);border-radius:50%"></i>酒店</span>
+      <span id="offmap"></span>
+    </div>
+    <div id="selCard" class="sel-card"></div>
+  </div>
+
+  <div class="panel">
+    <h3>查目的地</h3>
+    <input class="input" id="q" type="search" placeholder="输入名字，例如 斗兽场、Roscioli、机场" autocomplete="off">
+    <div class="chips" id="distChips" role="group" aria-label="目的地分类"></div>
+    <div class="rows" id="results"></div>
+  </div>
+
+  <div class="panel">
+    <h3>清单外的地方</h3>
+    <label class="fld" for="customInput">粘贴目的地坐标或 Google 地图完整链接
+      <textarea class="input" id="customInput" placeholder="例如 41.9009, 12.4833"></textarea>
+    </label>
+    <div class="actions"><button class="btn primary" id="customGo" type="button">算距离</button></div>
+    <div id="customOut"></div>
+  </div>
+</section>
+
+<!-- ============ 出行 ============ -->
+<section class="tab" id="tab-go" aria-labelledby="h-go" hidden>
+  <div class="sec-h"><h2 id="h-go">出行</h2><small>ATAC 公交 2025 年 7 月起的票价</small></div>
+
+  <div class="panel">
+    <h3>公交票：直接刷银行卡最省事</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>票种</th><th>价格</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>BIT 单程票</td><td class="n">€1.50</td><td>100 分钟内可换公交，地铁只能进站一次</td></tr>
+        <tr><td>Roma 24 小时</td><td class="n">€8.50</td><td>一天坐 6 次以上才划算</td></tr>
+        <tr><td>Roma 48 小时</td><td class="n">€15</td><td></td></tr>
+        <tr><td>Roma 72 小时</td><td class="n">€22</td><td></td></tr>
+        <tr><td>CIS 7 天</td><td class="n">€29</td><td>住一周的话</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><b>Tap&amp;Go</b>：地铁闸机和大部分公交的读卡器可以直接刷非接触银行卡或手机（找感应标志），按单程计费，一人一张卡。</li>
+      <li>也可以用 <b>B+（Bipiù）</b>App 买电子票并激活。纸质票第一次上车或进站时必须打卡，没打卡被查到会罚款。</li>
+      <li>罗马市中心景点很集中，大部分时候走路比坐车快；地铁只有三条线：<span class="line lA">A</span>橙线（梵蒂冈 Ottaviano、西班牙台阶 Spagna、Termini）、<span class="line lB">B</span>蓝线（Termini、斗兽场 Colosseo、金字塔 Piramide）、<span class="line lC">C</span>绿线（游客较少用到）。</li>
+      <li>罗马公交<b>经常罢工（sciopero）</b>，出门前查一下 ATAC 网站或问酒店。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>机场进城</h3>
+    <p class="subh">菲乌米奇诺机场 FCO（美国航班都在这里）</p>
+    <ul>
+      <li><b>最快：Leonardo Express 火车</b> 直达 Termini，€14，约 32 分钟，高峰每 15 分钟一班。机场首班约 05:38、末班约 00:23。纸质票上车前在站台绿色机器打卡。</li>
+      <li><b>FL1 区域火车</b>：€8，到 Trastevere、Ostiense、Tiburtina，不停 Termini。住特拉斯提弗列一带很方便。</li>
+      <li><b>机场大巴</b>：€5.90–7，约 50–60 分钟，到 Termini。</li>
+      <li><b>出租车固定价</b>：到奥勒良城墙以内（基本覆盖市中心）<b>€55</b>，最多 4 人含行李。只上车身有 “Roma Capitale” 标志的白色出租车。</li>
+    </ul>
+    <p class="subh">钱皮诺机场 CIA（多是廉航）</p>
+    <ul>
+      <li>机场大巴到 Termini 约 €7、约 40 分钟；出租车固定价 <b>€40</b>。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="go-lounge">
+    <h3>机场贵宾室（Priority Pass）</h3>
+    <p><b>菲乌米奇诺 FCO 可以用。</b>非申根区（飞美国）有 2 家、申根区有 3 家可用 Priority Pass。钱皮诺 CIA 没有找到可靠资料显示有 Priority Pass 贵宾室。</p>
+    <p class="subh">非申根区 · E 登机口（飞回美国）</p>
+    <div>
+      <div class="lounge"><b>Plaza Premium Lounge</b><span class="lt go">回美国用这家</span><span class="ld">E 登机口区上层，英航贵宾室旁边，过出境护照检查后。5:00–22:30（周六到 23:00），最多 2 小时。面积大、约 300 个座位，淋浴另收约 €22。</span></div>
+      <div class="lounge"><b>Prima Vista Portus</b><span class="lt go">回美国可用</span><span class="ld">E 登机口区一楼，E51–E61 登机口附近。5:45–22:45。Plaza Premium 满员时去这里。</span></div>
+    </div>
+    <p class="subh">申根区 · 1 号航站楼 A 登机口（去欧洲其他国家）</p>
+    <div>
+      <div class="lounge"><b>Prima Vista</b><span class="lt">去欧洲其他国家</span><span class="ld">夹层，A31–A52 登机口附近，2025 年 8 月新开。5:15–21:45。</span></div>
+      <div class="lounge"><b>Plaza Premium Lounge</b><span class="lt">去欧洲其他国家</span><span class="ld">申根出发区夹层。4:30–21:30，最多 2 小时。约 76 个座位，上午就容易满。</span></div>
+      <div class="lounge"><b>Primeclass</b><span class="lt">去欧洲其他国家</span><span class="ld">夹层，A61–A83 登机口附近，没有窗户。5:30–22:00。</span></div>
+    </div>
+    <ul>
+      <li><b>飞回美国</b>：先过出境护照检查进 E 登机口区，再去 Plaza Premium 或 Prima Vista Portus。ITA 航空和英航的贵宾室不收 Priority Pass。</li>
+      <li>同一区域的 Plaza Premium First 和 Prima Vista Domus 不在推荐之列：前者只收现场付费，后者没窗户、计划关闭。</li>
+      <li>出发当天在 Priority Pass App 里再看一次营业时间和是否满员。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>打车</h3>
+    <ul>
+      <li>只坐白色、车身有 “Roma Capitale” 标志的正规出租车，在出租车站（Taxi stand）排队上车，别跟主动搭讪的司机走。</li>
+      <li>可以用 FreeNow、itTaxi 等 App 叫正规出租车；Uber 在罗马主要是高价的 Uber Black。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>走路</h3>
+    <ul>
+      <li>老城几乎都是石子路（sampietrini），穿防滑平底鞋。上 Gianicolo 山、Pincio 平台、阿文提诺山都要爬坡。</li>
+      <li>街上的<b>小水龙头 nasone</b> 流的是可以喝的泉水，免费装水。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>一日游怎么去</h3>
+    <ul>
+      <li><b>蒂沃利 Tivoli</b>（埃斯特庄园、哈德良别墅）：Ponte Mammolo 地铁站坐 COTRAL 巴士约 1 小时，或从 Tiburtina 坐火车。</li>
+      <li><b>奥斯提亚古城 Ostia Antica</b>：Piramide 坐 Roma–Lido 线火车约 30 分钟，刷 Tap&amp;Go 或普通票。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 须知 ============ -->
+<section class="tab" id="tab-notes" aria-labelledby="h-notes" hidden>
+  <div class="sec-h"><h2 id="h-notes">须知</h2><small>安全 · 钱 · 签证 · 历史</small></div>
+  <div class="chips" id="noteJump" role="group" aria-label="跳到小节">
+    <button class="chip" type="button" data-jump="n-offline">离线使用</button>
+    <button class="chip" type="button" data-jump="n-trap">避坑</button>
+    <button class="chip" type="button" data-jump="n-money">钱</button>
+    <button class="chip" type="button" data-jump="n-safe">安全</button>
+    <button class="chip" type="button" data-jump="n-sos">紧急电话</button>
+    <button class="chip" type="button" data-jump="n-church">教堂须知</button>
+    <button class="chip" type="button" data-jump="n-life">生活礼仪</button>
+    <button class="chip" type="button" data-jump="n-visa">签证</button>
+    <button class="chip" type="button" data-jump="n-red">小红书</button>
+    <button class="chip" type="button" data-jump="n-hist">历史</button>
+    <button class="chip" type="button" data-jump="n-check">出发前核对</button>
+  </div>
+
+  <div class="panel" id="n-offline">
+    <h3>存到手机，没网也能用</h3>
+    <div id="offlineStatus" class="msg warn">正在检查离线状态…</div>
+    <ol>
+      <li><b>iPhone</b>：用 <b>Safari</b> 打开本页，点底部的分享按钮 → <b>添加到主屏幕</b>。</li>
+      <li><b>安卓</b>：用 <b>Chrome</b> 打开本页，点右上角 ⋮ → <b>添加到主屏幕</b> 或 <b>安装应用</b>。</li>
+      <li>有网的时候，从主屏幕图标<b>打开一次</b>，等上面显示“已保存”。之后没网也能打开。</li>
+      <li>在主屏幕版里重新设置一次酒店位置。主屏幕版和浏览器版的数据是分开存的。</li>
+    </ol>
+    <p class="note">微信、小红书里直接点开的页面不能离线保存，请先点右上角“在浏览器打开”。</p>
+    <p class="note">没网时：全部内容、距离估算、示意图都能用；“导航”按钮要打开地图 App，建议出发前在 Google 地图里下载罗马的离线地图。字体可能变成手机自带字体，不影响内容。</p>
+  </div>
+
+  <div class="panel" id="n-trap">
+    <h3>避坑清单</h3>
+    <ol>
+      <li><b>“没有菜单”的餐厅</b>：服务员说今天没菜单、直接推荐，最后一份意面加红酒能收到 €90。先问价，不给看价格就换一家。</li>
+      <li><b>送玫瑰、绑手绳</b>：有人把玫瑰塞给女生，或者往手腕上绑一根手绳，然后要钱。别伸手接，直接走。</li>
+      <li><b>假请愿、假慈善</b>：穿统一衣服、拿着写字板请你签名捐款的人，有的和小偷一起配合。拒绝后继续走。</li>
+      <li><b>斗兽场门口的“角斗士”</b>：穿古装的人拉你合影，拍完要钱。不想付就别拍。</li>
+      <li><b>“免排队”门票贩子</b>：斗兽场、梵蒂冈、圣彼得大教堂门口都有人卖加价票或“快速通道”。斗兽场门票实名，倒卖的票进不去；圣彼得大教堂本来就免费。</li>
+      <li><b>假警察</b>：便衣说你的购物小票有问题要当场罚款。要求看证件，坚持去警察局交钱。</li>
+      <li><b>黑车</b>：只在出租车站坐白色正规出租车。</li>
+      <li><b>找零</b>：数清楚，有人用长得像欧元的硬币找零。</li>
+    </ol>
+    <p><b>小费</b>：意大利不强制给小费，账单已有 coperto 或 servizio 就不用给；服务很好可以留几欧元零头。</p>
+    <p><b>中国胃</b>：罗马四大经典意面最合口味：carbonara（蛋黄培根）、cacio e pepe（奶酪黑胡椒）、amatriciana（番茄培根）、gricia（培根奶酪）。还有炸米球 supplì、罗马披萨 pizza al taglio、犹太式炸洋蓟 carciofi alla giudia。意大利面偏咸偏硬（al dente），不喜欢可以说 “meno sale”（少盐）。</p>
+  </div>
+
+  <div class="panel" id="n-money">
+    <h3>钱</h3>
+    <ul>
+      <li>货币是<b>欧元 €</b>。刷卡几乎到处能用，小咖啡馆、街边小店、教堂里的蜡烛和导览机最好备点零钱。</li>
+      <li>POS 机或 ATM 问用美元还是欧元，<b>永远选欧元</b>。</li>
+      <li>不用 Euronet 等独立 ATM（游客区很多），用银行的 ATM（如 Intesa Sanpaolo、UniCredit、BNL）。</li>
+      <li>在咖啡馆站在吧台喝比坐下便宜很多，先在收银台付钱拿小票，再到吧台点。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-safe">
+    <h3>安全</h3>
+    <p>罗马整体安全，针对游客的暴力犯罪很少，主要风险是<b>小偷和骗局</b>。女生独自旅行很常见，晚上走大街就好。</p>
+    <ul>
+      <li><b>小偷高发地</b>：64 路和 40 路公交（经过梵蒂冈和主要景点）、地铁 A 线、Termini 火车站、特莱维喷泉、西班牙台阶、斗兽场门口排队处。包背在前面，手机别放桌上。有人往你身上挤、手臂上搭着外套，要特别小心。</li>
+      <li><b>晚上</b>：Termini 车站周边、Esquilino 部分街道晚上比较乱，回酒店走大街或叫车。</li>
+      <li>护照原件放酒店保险箱，随身带复印件和照片；但被警察要求出示身份证件时，复印件可能不被接受。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-sos">
+    <h3>紧急电话</h3>
+    <div>
+      <div class="phone"><div><div class="pn">112</div><div class="pl">欧盟通用紧急电话</div></div><button class="btn copy" type="button" data-copy="112">复制</button></div>
+      <div class="phone"><div><div class="pn">113</div><div class="pl">警察</div></div><button class="btn copy" type="button" data-copy="113">复制</button></div>
+      <div class="phone"><div><div class="pn">+39 06 46741</div><div class="pl">美国驻意大利大使馆（美国公民服务，下班时间也接紧急电话）</div></div><button class="btn copy" type="button" data-copy="+390646741">复制</button></div>
+    </div>
+    <p class="note">美国大使馆地址：Via Vittorio Veneto 119/A（威尼托大街，离西班牙台阶约 15 分钟步行），邮箱 uscitizensrome@state.gov。出发前在美国国务院 STEP（step.state.gov）登记行程。护照丢了先去警察局报案（要回执 denuncia），再联系大使馆补办。</p>
+  </div>
+
+  <div class="panel" id="n-church">
+    <h3>教堂须知</h3>
+    <ul>
+      <li>进教堂（包括圣彼得大教堂、万神殿）要<b>遮住肩膀和膝盖</b>：女生别穿吊带、短裙短裤，带一条披肩最方便。圣彼得大教堂安检会拦。</li>
+      <li>弥撒时保持安静，别在祭坛附近走动拍照。西斯廷礼拜堂里<b>禁止拍照</b>。</li>
+      <li>西班牙台阶<b>不能坐</b>，坐下吃东西会被罚款；喷泉里不能泡脚。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-life">
+    <h3>生活和礼仪</h3>
+    <div class="words">
+      <div class="word"><b>Buongiorno</b><span>你好（白天）</span></div>
+      <div class="word"><b>Grazie</b><span>谢谢</span></div>
+      <div class="word"><b>Il conto, per favore</b><span>请买单</span></div>
+      <div class="word"><b>Quanto costa?</b><span>多少钱？</span></div>
+      <div class="word"><b>Un caffè, per favore</b><span>一杯浓缩咖啡</span></div>
+    </div>
+    <ul>
+      <li>在意大利点 “caffè” 就是浓缩咖啡；卡布奇诺本地人一般只在早上喝。</li>
+      <li>10–11 月白天约 13–20°C，常下雨；12 月 5–13°C。带雨伞和防风外套。</li>
+      <li>很多小店午后（约 13:30–16:00）休息，周日和周一上午有的店不开。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-visa">
+    <h3>签证（美国护照）</h3>
+    <ul>
+      <li>美国护照去意大利等申根国家<b>免签</b>，任意 180 天内最多停留 90 天。护照有效期要比离开申根区的日期多出至少 3 个月。</li>
+      <li>申根入出境系统 <b>EES</b> 已全面启用，第一次入境要在边境录指纹和照片，排队可能更久。</li>
+      <li><b>ETIAS</b>（电子旅行许可，20 欧元）计划 2026 年第四季度启动，截至 2026 年 8 月还没开放申请。出发前到欧盟官网 travel-europe.europa.eu 查；只在官网申请，别用代办网站。</li>
+      <li>梵蒂冈没有边检，从罗马直接走进去。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-red">
+    <h3>小红书搜索建议</h3>
+    <ul>
+      <li>搜店时加“本地人”“避雷”“账单”“coperto”等关键词，重点看最近 3 个月的笔记。</li>
+      <li>旧攻略常见过时信息：特莱维喷泉“免费随便看”（2026 年 2 月起白天近看收 €2）、万神殿 €5（7 月起 €7）、斗兽场“现场买票”（实名、提前 30 天放票，热门时段很快卖光）、ATAC 24 小时票 €7（现在 €8.50）。</li>
+      <li>很多笔记都在同一个机位拍同一道菜，基本就是网红店，按避坑清单自己判断。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-hist">
+    <h3>五分钟罗马历史</h3>
+    <ol class="timeline">
+      <li><span class="yr">前 753</span><div>传说罗慕路斯在帕拉蒂尼山建城，这是罗马的起点。<span class="see">去看：帕拉蒂尼山</span></div></li>
+      <li><span class="yr">前 509</span><div>罗马共和国成立，古罗马广场成为政治和商业中心。<span class="see">去看：古罗马广场</span></div></li>
+      <li><span class="yr">前 44</span><div>恺撒在元老院遇刺，此后屋大维成为第一位皇帝，罗马进入帝国时代。<span class="see">去看：古罗马广场里的恺撒神庙遗址</span></div></li>
+      <li><span class="yr">80</span><div>斗兽场落成，可以容纳约五万名观众。<span class="see">去看：斗兽场</span></div></li>
+      <li><span class="yr">125 前后</span><div>哈德良皇帝重建万神殿，它的混凝土穹顶至今仍是世界最大的无钢筋混凝土穹顶。<span class="see">去看：万神殿</span></div></li>
+      <li><span class="yr">135–139</span><div>哈德良陵墓建成，中世纪改成教皇的城堡，就是圣天使城堡。<span class="see">去看：圣天使城堡</span></div></li>
+      <li><span class="yr">1508–1512</span><div>米开朗基罗画西斯廷礼拜堂天顶，后来又设计了圣彼得大教堂的穹顶。<span class="see">去看：梵蒂冈博物馆、圣彼得大教堂</span></div></li>
+      <li><span class="yr">1651</span><div>贝尔尼尼完成纳沃纳广场的四河喷泉，罗马进入巴洛克时代。<span class="see">去看：纳沃纳广场</span></div></li>
+      <li><span class="yr">1762</span><div>特莱维喷泉完工。<span class="see">去看：特莱维喷泉</span></div></li>
+      <li><span class="yr">1871</span><div>罗马成为统一后的意大利首都；1929 年签订拉特兰条约，梵蒂冈成为独立国家。</div></li>
+    </ol>
+  </div>
+
+  <div class="panel" id="n-check">
+    <h3>出发前请再核对</h3>
+    <ul>
+      <li>万神殿：资料说 2026 年 7 月 1 日起从 €5 涨到 €7，以官方售票为准。</li>
+      <li>特莱维喷泉 €2 的收费时段只说是“白天”，具体几点到几点以官网为准。</li>
+      <li>梵蒂冈博物馆 €20 加 €5 网上预约费，提前 60 天放票；斗兽场 €18（含 €2 预约费），提前 30 天放票。门票实名，名字要和护照一致。</li>
+      <li>纳沃纳广场圣诞集市 2026 年的日期（预计 12 月 1 日到 1 月 6 日）还没官方确认。</li>
+      <li>机场贵宾室：FCO 的位置来自第三方资料（2026 年 5 月），Priority Pass 官网页面这次没能打开核对；钱皮诺 CIA 没找到可用的贵宾室资料。出发前在 Priority Pass App 里确认。</li>
+      <li>米其林星级用的是较早版本的名单，订位前查最新指南。</li>
+      <li>本页距离按直线距离估算，实际路程请以地图 App 为准。</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<nav class="tabs" aria-label="栏目"><div class="tabs-in" role="tablist">
+  <button class="tabbtn" role="tab" data-tab="food" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v8a2 2 0 0 1-1.5 1.94V22h-2V11.94A2 2 0 0 1 2 10V2h1.5v6H5V2h1.5v6H8V2zm9 0c2.2 0 4 2.5 4 6.5 0 2.4-1 4-2.5 4.6V22h-2V2.1A3 3 0 0 1 16 2z" fill="currentColor"/></svg>美食</button>
+  <button class="tabbtn" role="tab" data-tab="sights" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21h20v-2H2zm1-3h18V6c-2.5-2-5.5-3-9-3S5.5 4 3 6zm2-2v-3h2v3zm4 0v-3h2v3zm4 0v-3h2v3zm4 0v-3h2v3zM5 11V8h2v3zm4 0V8h2v3zm4 0V8h2v3zm4 0V8h2v3z" fill="currentColor"/></svg>景点</button>
+  <button class="tabbtn center" role="tab" data-tab="dist" type="button"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg></span>距离</button>
+  <button class="tabbtn" role="tab" data-tab="go" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2h2v2h3l1 2h-4l-1 2h4a3 3 0 0 1 3 3v6a2 2 0 0 1-2 2l1.5 3h-2.2L15 19H9l-1.3 3H5.5L7 19a2 2 0 0 1-2-2v-6a3 3 0 0 1 3-3h3l-1-2H6l1-2h4zM7 11v3h10v-3zm1 5.2a1 1 0 1 0 0 .1zm8 0a1 1 0 1 0 0 .1z" fill="currentColor"/></svg>出行</button>
+  <button class="tabbtn" role="tab" data-tab="notes" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2zm0-8h-2V7h2z" fill="currentColor"/></svg>须知</button>
+</div></nav>
+
+<script>
+"use strict";
+/* ---------- data ---------- */
+const FOOD_TYPES = {all:"全部推荐",tratt:"家常 trattoria",snack:"披萨小吃咖啡",asian:"想吃中餐",fine:"吃顿好的",hype:"小红书热门值不值"};
+const SIGHT_TYPES = {top10:"Top 10 两日路线",trap10:"Top 10 排雷",must:"必去",more:"顺路看",season:"圣诞季",trip:"一日游",photo:"拍照机位",plan:"行程建议"};
+const CITY = "Roma";
+
+const P = [
+// trattoria
+{id:"grappolo",kind:"food",type:"tratt",badge:"米其林推荐",name:"Hosteria Grappolo d'Oro",zh:"纳沃纳广场后面的平价老馆",area:"纳沃纳 Navona",street:"Piazza della Cancelleria",no:"80",lat:41.8966,lng:12.4712,
+ price:"€ 平价",order:"cacio e pepe 粗面（tonnarelli）、罗马式烤羊肉",why:"米其林指南“罗马最佳 trattoria”名单里的店，就在纳沃纳广场背后，却不做游客生意。",tip:"晚餐建议订位。Top 10 路线第二天顺路。"},
+{id:"trippa",kind:"food",type:"tratt",badge:"米其林推荐",name:"L'Osteria della Trippa",zh:"特拉斯提弗列的罗马内脏菜",area:"特拉斯提弗列 Trastevere",street:"Via Goffredo Mameli",no:"15",lat:41.8866,lng:12.4706,
+ price:"€€ 中等",order:"罗马式牛肚 trippa，以及拉齐奥地方菜",why:"米其林指南推荐，在特拉斯提弗列游客没那么多的一头。",tip:"不吃内脏也有其他罗马菜。订位。"},
+{id:"armando",kind:"food",type:"tratt",badge:"米其林推荐",name:"Armando al Pantheon",zh:"万神殿旁的家族老店",area:"万神殿 Pantheon",street:"Salita de' Crescenzi",no:"31",lat:41.8990,lng:12.4757,
+ price:"€€ 中等",order:"罗马经典意面、内脏菜 quinto quarto、古罗马风味菜",why:"米其林指南推荐。紧挨着万神殿，却是靠谱的家族 trattoria。",tip:"一定要提前订位，位子很少。Top 10 路线第一天的午饭。"},
+{id:"roscioli",kind:"food",type:"tratt",badge:"米其林推荐",name:"Roscioli",zh:"carbonara 名店，也是熟食铺",area:"鲜花广场 Campo de' Fiori",street:"Via dei Giubbonari",no:"21",lat:41.8939,lng:12.4733,
+ price:"€€ 中等偏上",order:"carbonara、burrata、火腿奶酪拼盘",why:"米其林指南推荐，前面是熟食店，后面是餐厅。",tip:"非常难订，提前几天订位。没订到就去它家的面包店 Antico Forno Roscioli 买披萨。"},
+{id:"poldo",kind:"food",type:"tratt",badge:"米其林推荐",name:"Poldo e Gianna Osteria",zh:"议会附近的新派罗马菜",area:"万神殿北边",street:"Vicolo Rosini",no:"6",lat:41.9015,lng:12.4775,
+ price:"€ 平价",order:"罗马经典意面",why:"米其林指南推荐，用新做法做罗马家常菜。",tip:"离特莱维和万神殿都近。"},
+{id:"romane",kind:"food",type:"tratt",badge:"米其林推荐",name:"Romanè",zh:"梵蒂冈后面的罗马时令菜",area:"梵蒂冈 Prati",street:"Via Cipro",no:"106",lat:41.9070,lng:12.4470,
+ price:"€ 平价",order:"时令罗马菜",why:"米其林指南推荐，在梵蒂冈后面的住宅区，避开了景区餐厅。",tip:"看完梵蒂冈博物馆可以来这里吃午饭（Cipro 地铁站旁）。"},
+{id:"enzo",kind:"food",type:"tratt",name:"Da Enzo al 29",zh:"特拉斯提弗列排队名店",area:"特拉斯提弗列 Trastevere",street:"Via dei Vascellari",no:"29",lat:41.8875,lng:12.4770,
+ price:"€€ 中等",order:"carbonara、cacio e pepe、犹太式炸洋蓟",why:"特拉斯提弗列最有名的小馆，出品稳定。",tip:"只有少量位子可订，其余要排队；开门前 20 分钟到。"},
+{id:"felice",kind:"food",type:"tratt",name:"Felice a Testaccio",zh:"泰斯塔乔的老字号",area:"泰斯塔乔 Testaccio",street:"Via Mastro Giorgio",no:"29",lat:41.8785,lng:12.4760,
+ price:"€€ 中等",order:"桌边拌的 cacio e pepe",why:"泰斯塔乔是罗马菜的老家，这家开了几十年。",tip:"订位。可以和泰斯塔乔市场一起去。"},
+{id:"pennestri",kind:"food",type:"tratt",badge:"米其林推荐",name:"Trattoria Pennestri",zh:"奥斯蒂恩塞的市场菜",area:"奥斯蒂恩塞 Ostiense",street:"Via Giovanni da Empoli",no:"5",lat:41.8710,lng:12.4800,
+ price:"€€ 中等",order:"每日菜单、罗马经典第一道菜",why:"米其林指南推荐，菜单按市场每天变。",tip:"本地人多，离 Piramide 地铁站不远。"},
+// snack / pizza / coffee
+{id:"remo",kind:"food",type:"snack",badge:"推荐",name:"Pizzeria da Remo",zh:"罗马式薄脆披萨",area:"泰斯塔乔 Testaccio",street:"Piazza di Santa Maria Liberatrice",no:"44",lat:41.8795,lng:12.4745,
+ price:"€ 平价",order:"薄脆圆披萨、炸米球 supplì",why:"本地人吃罗马薄披萨的老店，便宜热闹。",tip:"只开晚上，排队快。"},
+{id:"pizzarium",kind:"food",type:"snack",name:"Pizzarium Bonci",zh:"按块称重的方块披萨",area:"梵蒂冈 Prati",street:"Via della Meloria",no:"43",lat:41.9068,lng:12.4466,
+ price:"€ 按重量",order:"pizza al taglio（切块披萨），几种口味各切一小块",why:"罗马切块披萨的名店。",tip:"站着吃、外带为主。离 Cipro 地铁站很近，看完梵蒂冈顺路。"},
+{id:"forno",kind:"food",type:"snack",name:"Antico Forno Roscioli",zh:"老面包店的白披萨",area:"鲜花广场 Campo de' Fiori",street:"Via dei Chiavari",no:"34",lat:41.8945,lng:12.4735,
+ price:"€ 按重量",order:"pizza bianca（白披萨）、番茄披萨、点心",why:"Roscioli 家的面包店，本地人排队买早餐。",tip:"上午去选择多。"},
+{id:"suppli",kind:"food",type:"snack",name:"Supplì Roma",zh:"炸米球 supplì",area:"特拉斯提弗列 Trastevere",street:"Via di San Francesco a Ripa",no:"137",lat:41.8860,lng:12.4710,
+ price:"€ 平价",order:"经典番茄肉酱 supplì、切块披萨",why:"特拉斯提弗列的街坊小店。",tip:"外带，边走边吃。"},
+{id:"eustachio",kind:"food",type:"snack",name:"Sant'Eustachio Il Caffè",zh:"万神殿旁的老咖啡馆",area:"万神殿 Pantheon",street:"Piazza di Sant'Eustachio",no:"82",lat:41.8985,lng:12.4752,
+ price:"€ 站着喝便宜",order:"招牌浓缩咖啡 gran caffè（默认加糖，不要糖说 senza zucchero）",why:"开了很多年的烘焙咖啡馆。",tip:"站在吧台喝，先付款拿小票。"},
+// asian
+{id:"hangzhou",kind:"food",type:"asian",badge:"家乡味",name:"Hang Zhou da Sonia",zh:"维托里奥广场的老牌中餐",area:"埃斯奎利诺 Esquilino",street:"Via Principe Eugenio",no:"82",lat:41.8945,lng:12.5075,
+ price:"€ 平价",order:"蒸饺、川味鸡、鸭，墙上手写的当日菜",why:"华人聚集的维托里奥广场一带的老店，菜单有不少少见的菜。",tip:"Termini 站往南走约 10 分钟，晚上注意安全。"},
+{id:"dezhuang",kind:"food",type:"asian",badge:"家乡味",name:"De Zhuang Hot Pot",zh:"德庄火锅",area:"埃斯奎利诺 Esquilino",street:"Via di San Vito",no:"15",lat:41.8963,lng:12.5025,
+ price:"€€ 中等",order:"麻辣火锅，可选辣度",why:"吃腻了意面时最能解馋。",tip:"周末晚上订位。"},
+{id:"greent",kind:"food",type:"asian",name:"Green T",zh:"万神殿旁的中餐和茶",area:"万神殿 Pantheon",street:"Via del Piè di Marmo",no:"28",lat:41.8985,lng:12.4795,
+ price:"€€ 中等",order:"蒸饺、北京烤鸭、茶",why:"在市中心，逛景点时最方便的中餐。",tip:"环境偏正式。"},
+{id:"song",kind:"food",type:"asian",name:"Song",zh:"普拉蒂的点心",area:"普拉蒂 Prati",street:"Via Valadier",no:"14",lat:41.9070,lng:12.4640,
+ price:"€€ 中等",order:"各式点心、饺子品尝套餐",why:"以点心为主的中餐。",tip:"离圣天使城堡步行约 10 分钟。"},
+// fine
+{id:"pergola",kind:"food",type:"fine",badge:"米其林三星",name:"La Pergola",zh:"罗马唯一的米其林三星",area:"马里奥山 Monte Mario",street:"Via Alberto Cadlolo",no:"101",lat:41.9210,lng:12.4440,q:"La Pergola Rome Cavalieri",
+ price:"€€€ 品鉴菜单",order:"Heinz Beck 的品鉴菜单",why:"罗马唯一的三星餐厅，在山顶酒店顶楼，能俯瞰全城。",tip:"提前很久订位，有着装要求。离市中心较远，打车去。"},
+{id:"pagliaccio",kind:"food",type:"fine",badge:"米其林二星",name:"Il Pagliaccio",zh:"市中心的二星餐厅",area:"纳沃纳 Navona",street:"Via dei Banchi Vecchi",no:"129",lat:41.8985,lng:12.4695,
+ price:"€€€ 品鉴菜单",order:"品鉴菜单",why:"在老城中心的米其林二星。",tip:"提前订位。"},
+// hype
+{id:"giolitti",kind:"food",type:"hype",verdict:"meh",vlabel:"可以，但不必排队",name:"Giolitti",zh:"百年网红冰淇淋店",area:"万神殿北边",street:"Via degli Uffici del Vicario",no:"40",lat:41.9010,lng:12.4785,
+ text:"老店名气大、排队长，冰淇淋不错但不算惊艳。先在收银台付钱拿小票再排队选口味。"},
+{id:"greco",kind:"food",type:"hype",verdict:"meh",vlabel:"站着喝就好",name:"Antico Caffè Greco",zh:"西班牙台阶旁的百年咖啡馆",area:"西班牙台阶 Spagna",street:"Via dei Condotti",no:"86",lat:41.9057,lng:12.4810,
+ text:"店内装潢很美，但坐下点单价格是吧台的好几倍。想看看就站在吧台喝一杯。"},
+{id:"pompi",kind:"food",type:"hype",verdict:"ok",vlabel:"可以买一盒",name:"Pompi",zh:"提拉米苏专门店",area:"西班牙台阶 Spagna",street:"Via della Croce",no:"82",lat:41.9060,lng:12.4800,
+ text:"盒装提拉米苏方便好吃，价格不贵。外带到附近吃，别在西班牙台阶上坐着吃（会被罚款）。"}
+];
+
+const SIGHTS = [
+{id:"colosseo",kind:"sight",type:"must",name:"Colosseo",zh:"斗兽场",area:"斗兽场 Colosseo",street:"Piazza del Colosseo",no:"",lat:41.8902,lng:12.4922,q:"Colosseum",
+ price:"24 小时联票 €18（含斗兽场、古罗马广场、帕拉蒂尼山，含 €2 预约费）；Full Experience（竞技场 / 地下层）€24",hours:"10 月 25 日–2 月底 8:30–16:30，最后入场提前 1 小时；12 月 25 日、1 月 1 日闭馆",
+ best:"8:30 第一个时段",go:"地铁 B 线 Colosseo 站",tip:"只在官网 ticketing.colosseo.it 买，提前 30 天放票。票是实名的，名字要和护照一致，否则不能进、不退款。每月第一个周日免费但非常挤。"},
+{id:"foro",kind:"sight",type:"must",name:"Foro Romano · Palatino",zh:"古罗马广场和帕拉蒂尼山",area:"斗兽场 Colosseo",street:"Via della Salara Vecchia",no:"5/6",lat:41.8925,lng:12.4853,q:"Roman Forum",
+ price:"包含在斗兽场 24 小时联票里",hours:"冬季约 9:00–16:30",best:"看完斗兽场接着去",go:"斗兽场往西走 5 分钟，从提图斯凯旋门旁的入口进",tip:"遗址很大没遮阴，带水。帕拉蒂尼山上能俯瞰广场。"},
+{id:"pantheon",kind:"sight",type:"must",name:"Pantheon",zh:"万神殿",area:"万神殿 Pantheon",street:"Piazza della Rotonda",no:"",lat:41.8986,lng:12.4769,q:"Pantheon Rome",
+ price:"€5，2026 年 7 月 1 日起 €7；18–25 岁 €2，18 岁以下免费",hours:"每天 9:00–19:00，最后入场 18:30",best:"中午阳光从穹顶圆洞照下来",go:"从古罗马广场经威尼斯广场走约 20 分钟",tip:"遮住肩膀和膝盖。在官网或现场买票。"},
+{id:"trevi",kind:"sight",type:"must",name:"Fontana di Trevi",zh:"特莱维喷泉（许愿池）",area:"特莱维 Trevi",street:"Piazza di Trevi",no:"",lat:41.9009,lng:12.4833,q:"Trevi Fountain",
+ price:"白天近看 €2（2026 年 2 月起，罗马居民免费）；在上方广场看免费；晚上近看免费",hours:"全天",best:"清早或晚上",go:"万神殿往东走约 10 分钟",tip:"背对喷泉用右手从左肩扔硬币。这里小偷多，周围餐厅多是游客价。"},
+{id:"spagna",kind:"sight",type:"must",name:"Scalinata di Trinità dei Monti",zh:"西班牙台阶",area:"西班牙广场 Spagna",street:"Piazza di Spagna",no:"",lat:41.9059,lng:12.4823,q:"Spanish Steps",
+ price:"免费",hours:"全天",best:"傍晚，爬上去再走到 Pincio 平台看日落",go:"特莱维往北走约 10 分钟；地铁 A 线 Spagna 站",tip:"台阶上不能坐，会被罚款。送玫瑰、绑手绳的人很多。"},
+{id:"vaticanmuseums",kind:"sight",type:"must",name:"Musei Vaticani",zh:"梵蒂冈博物馆和西斯廷礼拜堂",area:"梵蒂冈 Vaticano",street:"Viale Vaticano",no:"",lat:41.9065,lng:12.4536,q:"Vatican Museums entrance",
+ price:"€20 + 网上预约费 €5；每月最后一个周日免费（9:00–14:00，最后入场 12:30，不能预约）",hours:"周一至周六开放，<b>周日关门</b>（最后一个周日除外）；提前 60 天放票",
+ best:"第一个时段，或下午晚些",go:"地铁 A 线 Ottaviano 或 Cipro 站，走 10 分钟",tip:"只在官网 museivaticani.va 买票。西斯廷礼拜堂禁止拍照。Ottaviano 站出口很多人卖“免排队团”，不用理。"},
+{id:"stpeter",kind:"sight",type:"must",name:"Basilica di San Pietro",zh:"圣彼得大教堂",area:"梵蒂冈 Vaticano",street:"Piazza San Pietro",no:"",lat:41.9022,lng:12.4570,q:"St. Peter's Basilica",
+ price:"免费；可选 €7 官方预约时段（含语音导览）；登顶穹顶另收费",hours:"每天 7:00–20:00",best:"7:00 或 17:00 以后，安检队最短",go:"梵蒂冈博物馆出来沿城墙走约 15 分钟",tip:"遮住肩膀和膝盖，安检会拦。周三上午有教皇公开接见，人特别多。"},
+{id:"castel",kind:"sight",type:"must",name:"Castel Sant'Angelo",zh:"圣天使城堡",area:"普拉蒂 Prati",street:"Lungotevere Castello",no:"50",lat:41.9031,lng:12.4663,q:"Castel Sant'Angelo",
+ price:"€15；每月第一个周日免费",hours:"每天 9:00–19:30，最后入场 18:30",best:"下午",go:"圣彼得广场沿和解大道走约 15 分钟",tip:"顶层平台看圣彼得穹顶和台伯河，排队一般不长。"},
+{id:"navona",kind:"sight",type:"must",name:"Piazza Navona",zh:"纳沃纳广场",area:"纳沃纳 Navona",street:"",no:"",lat:41.8992,lng:12.4731,q:"Piazza Navona",
+ price:"免费",hours:"全天",best:"下午到傍晚",go:"圣天使城堡过天使桥，走约 10 分钟",tip:"贝尔尼尼的四河喷泉在中间。广场边的餐厅是游客价，喝东西也贵。"},
+{id:"gianicolo",kind:"sight",type:"must",name:"Terrazza del Gianicolo",zh:"贾尼科洛山观景台",area:"特拉斯提弗列上方",street:"Piazzale Giuseppe Garibaldi",no:"",lat:41.8916,lng:12.4613,q:"Terrazza del Gianicolo",
+ price:"免费",hours:"全天",best:"日落",go:"从特拉斯提弗列沿 Via Garibaldi 上坡约 15 分钟",tip:"能看到整个罗马老城的穹顶。看完下山到特拉斯提弗列吃晚饭。"},
+{id:"trastevere",kind:"sight",type:"more",name:"Trastevere",zh:"特拉斯提弗列老街区",area:"特拉斯提弗列 Trastevere",street:"Piazza di Santa Maria in Trastevere",no:"",lat:41.8894,lng:12.4700,q:"Santa Maria in Trastevere",
+ price:"免费",hours:"全天",best:"傍晚到晚上",go:"纳沃纳经鲜花广场、西斯托桥走约 20 分钟",tip:"越来越游客化，餐厅要挑。Top 10 路线第二天会经过。"},
+{id:"campo",kind:"sight",type:"more",name:"Campo de' Fiori",zh:"鲜花广场",area:"鲜花广场",street:"",no:"",lat:41.8956,lng:12.4722,q:"Campo de' Fiori",
+ price:"免费",hours:"上午有市场（周日休市）",best:"上午",go:"纳沃纳往南走 5 分钟",tip:"市场里的香料、意面礼盒是游客价，可以逛不必买。"},
+{id:"borghese",kind:"sight",type:"more",name:"Galleria Borghese",zh:"博尔盖塞美术馆",area:"博尔盖塞公园",street:"Piazzale Scipione Borghese",no:"5",lat:41.9142,lng:12.4922,q:"Galleria Borghese",
+ price:"€16 + €2 预约费；每月第一个周日免费（名额很少）",hours:"每天 5 个 2 小时场次（9、11、13、15、17 点）；必须预约",best:"上午场",go:"西班牙台阶往北穿过博尔盖塞公园约 20 分钟",tip:"贝尔尼尼雕塑和卡拉瓦乔画作集中在这里，不能现场买票。"},
+{id:"pincio",kind:"sight",type:"more",name:"Terrazza del Pincio",zh:"平丘平台",area:"人民广场上方",street:"",no:"",lat:41.9113,lng:12.4797,q:"Terrazza del Pincio",
+ price:"免费",hours:"全天",best:"日落",go:"西班牙台阶顶上往北走约 10 分钟",tip:"俯瞰人民广场，远处是圣彼得穹顶。Top 10 路线第一天结束可以来。"},
+{id:"vittoriano",kind:"sight",type:"more",name:"Vittoriano",zh:"维托里奥·埃马努埃莱二世纪念堂",area:"威尼斯广场 Venezia",street:"Piazza Venezia",no:"",lat:41.8946,lng:12.4831,q:"Altare della Patria",
+ price:"纪念堂台阶免费；楼顶观景电梯收费（以官网为准）",hours:"白天",best:"Top 10 第一天从古罗马广场去万神殿时路过",go:"古罗马广场往北走 5 分钟",tip:"白色大理石建筑，罗马人叫它“打字机”。"},
+{id:"aventino",kind:"sight",type:"more",name:"Giardino degli Aranci",zh:"阿文提诺山橘子花园和钥匙孔",area:"阿文提诺 Aventino",street:"Piazza Pietro d'Illiria",no:"",lat:41.8846,lng:12.4795,q:"Giardino degli Aranci",
+ price:"免费",hours:"白天",best:"傍晚",go:"斗兽场往西南走约 20 分钟，或地铁 B 线 Circo Massimo 站上坡",tip:"附近马耳他骑士团大门的钥匙孔里能看到圣彼得穹顶，常排队。"},
+// season
+{id:"navonaxmas",kind:"sight",type:"season",name:"Mercatino di Natale",zh:"纳沃纳广场圣诞集市",area:"纳沃纳 Navona",street:"Piazza Navona",no:"",lat:41.8995,lng:12.4732,q:"Piazza Navona",
+ price:"免费",hours:"预计 2026/12/1–2027/1/6，9:00–凌晨 1:00；圣诞节当天休息（日期待官方确认）",best:"晚上",go:"见纳沃纳广场",tip:"气氛好，但摊位多是便宜的进口货，不值得专程，和逛老城晚上一起安排。1 月 6 日上午有主显节女巫 Befana。"},
+{id:"presepi",kind:"sight",type:"season",name:"100 Presepi",zh:"圣彼得广场百座耶稣诞生场景",area:"梵蒂冈",street:"Piazza San Pietro",no:"",lat:41.9024,lng:12.4573,q:"Piazza San Pietro",
+ price:"免费",hours:"圣诞季",best:"白天",go:"见圣彼得大教堂",tip:"在圣彼得广场的柱廊下展出。罗马的官方圣诞树在威尼斯广场。"},
+// trips
+{id:"tivoli",kind:"sight",type:"trip",badge:"最推荐",name:"Tivoli",zh:"蒂沃利（埃斯特庄园、哈德良别墅）",area:"罗马东郊",street:"",no:"",lat:41.9630,lng:12.7960,q:"Villa d'Este Tivoli",
+ price:"以官网为准",hours:"白天",best:"天气好的一天",go:"Ponte Mammolo 坐 COTRAL 巴士约 1 小时，或 Tiburtina 坐火车",tip:"埃斯特庄园的喷泉花园是世界遗产，哈德良别墅在山下另一处。"},
+{id:"ostia",kind:"sight",type:"trip",name:"Ostia Antica",zh:"奥斯提亚古城",area:"罗马西南郊",street:"",no:"",lat:41.7556,lng:12.2920,q:"Ostia Antica Archaeological Park",
+ price:"以官网为准",hours:"白天，周一闭园（以官网为准）",best:"半天",go:"Piramide 坐 Roma–Lido 线火车约 30 分钟",tip:"保存很好的古罗马港口城市，人比古罗马广场少得多。"},
+// trap-only
+{id:"trevix",kind:"sight",type:"x",name:"Trevi restaurants",zh:"特莱维 / 梵蒂冈门口的拉客餐厅",area:"景区周边",street:"",no:"",lat:41.9005,lng:12.4840,q:"Piazza di Trevi",price:"",hours:"",best:"",go:"",tip:""},
+// transit
+{id:"termini",kind:"transit",type:"transit",name:"Roma Termini",zh:"罗马 Termini 火车站（地铁 A/B）",area:"埃斯奎利诺",street:"",no:"",lat:41.9010,lng:12.5016,q:"Roma Termini"},
+{id:"ottaviano",kind:"transit",type:"transit",name:"Ottaviano",zh:"地铁 A 线 Ottaviano 站（梵蒂冈）",area:"普拉蒂",street:"",no:"",lat:41.9087,lng:12.4579,q:"Metro Ottaviano"},
+{id:"colosseostation",kind:"transit",type:"transit",name:"Colosseo (Metro B)",zh:"地铁 B 线 Colosseo 站",area:"斗兽场",street:"",no:"",lat:41.8913,lng:12.4918,q:"Metro Colosseo"},
+{id:"fco",kind:"transit",type:"transit",name:"Aeroporto di Fiumicino",zh:"菲乌米奇诺机场 FCO",area:"菲乌米奇诺",street:"",no:"",lat:41.8003,lng:12.2389,q:"Rome Fiumicino Airport"},
+{id:"cia",kind:"transit",type:"transit",name:"Aeroporto di Ciampino",zh:"钱皮诺机场 CIA",area:"钱皮诺",street:"",no:"",lat:41.7994,lng:12.5949,q:"Rome Ciampino Airport"}
+];
+P.push(...SIGHTS);
+const BY = Object.fromEntries(P.map(p=>[p.id,p]));
+
+const HYPE = [
+ {ref:"giolitti"},
+ {ref:"greco"},
+ {ref:"pompi"},
+ {ref:"roscioli",v:"warn",l:"值得，但要订位",x:"carbonara 名不虚传，但很难订位，不订基本吃不上。订不到就去它家面包店买白披萨。"},
+ {ref:"enzo",v:"warn",l:"值得，要排队",x:"小红书上很火，出品确实稳定，但排队常常超过 1 小时。开门前到，或者去同样靠谱的 Felice a Testaccio。"},
+ {ref:"pizzarium",v:"ok",l:"值得",x:"看完梵蒂冈顺路吃，按重量买几种口味最划算。"},
+ {ref:"eustachio",v:"ok",l:"值得，站着喝",x:"万神殿旁边的老牌咖啡，在吧台喝价格正常。"},
+ {t:"特莱维喷泉 / 纳沃纳广场边的餐厅",v:"skip",l:"只看不吃",x:"门口拉客、多国语言配图菜单、“tourist menu”，价格高、质量一般。往旁边走两条街再找。"},
+ {t:"Hop-on Hop-off 观光巴士",v:"skip",l:"不划算",x:"罗马老城景点集中，走路就能串起来；巴士在窄街上经常堵车。"}
+];
+
+const PHOTO = [
+ ["贾尼科洛山观景台","日落时全城穹顶尽收眼底，Top 10 第二天终点。","gianicolo"],
+ ["平丘平台","日落俯瞰人民广场和圣彼得穹顶。","pincio"],
+ ["阿文提诺山钥匙孔","门缝里看圣彼得穹顶，排队常见。","aventino"],
+ ["天使桥看圣天使城堡","傍晚城堡亮灯最好看。","castel"],
+ ["特莱维喷泉清晨","早上 8 点前几乎没人。","trevi"],
+ ["帕拉蒂尼山俯瞰古罗马广场","在斗兽场联票范围内。","foro"],
+ ["万神殿穹顶的光柱","中午前后阳光从圆洞射进来。","pantheon"]
+];
+
+const DAYS = [
+ {n:"Day 1",t:"古罗马和老城中心",note:"按 Top 10 路线第一天走，斗兽场提前 30 天在官网订第一个时段。",stops:[["colosseo","斗兽场 8:30"],["foro","古罗马广场和帕拉蒂尼山"],["armando","午饭 Armando al Pantheon（订位）"],["pantheon","万神殿"],["trevi","特莱维喷泉"],["spagna","西班牙台阶"],["pincio","平丘平台看日落"]]},
+ {n:"Day 2",t:"梵蒂冈到特拉斯提弗列",note:"按 Top 10 路线第二天走。别排在周日（梵蒂冈博物馆关门）和周三上午（教皇公开接见，圣彼得人多）。",stops:[["vaticanmuseums","梵蒂冈博物馆（订好时段）"],["stpeter","圣彼得大教堂"],["castel","圣天使城堡"],["navona","纳沃纳广场"],["gianicolo","经鲜花广场、特拉斯提弗列上贾尼科洛山看日落"],["trippa","晚饭特拉斯提弗列（订位）"]]},
+ {n:"Day 3",t:"博尔盖塞和购物街",stops:[["borghese","博尔盖塞美术馆（预约场次）"],["pincio","穿过博尔盖塞公园到平丘平台"],["greco","沿 Via dei Condotti 逛街"],["vittoriano","威尼斯广场"],["grappolo","晚饭 Grappolo d'Oro"]]},
+ {n:"Day 4",t:"阿文提诺、泰斯塔乔和特拉斯提弗列",stops:[["aventino","上午阿文提诺山钥匙孔和橘子花园"],["felice","午饭 Felice a Testaccio（订位）"],["trastevere","过河逛特拉斯提弗列"],["suppli","下午吃炸米球 supplì"],["enzo","晚饭 Da Enzo al 29（排队）"]]},
+ {n:"Day 5",t:"可选：蒂沃利一日游",noroute:true,stops:[["termini","Ponte Mammolo 或 Tiburtina 出发"],["tivoli","埃斯特庄园、哈德良别墅"]]}
+];
+
+const PRESETS = [
+ {label:"万神殿 / 纳沃纳（老城中心）",lat:41.8990,lng:12.4750},
+ {label:"特莱维 / 西班牙台阶",lat:41.9035,lng:12.4830},
+ {label:"Termini 火车站附近",lat:41.9010,lng:12.5000},
+ {label:"蒙蒂 Monti（斗兽场北）",lat:41.8955,lng:12.4920},
+ {label:"特拉斯提弗列",lat:41.8890,lng:12.4700},
+ {label:"普拉蒂 Prati（梵蒂冈旁）",lat:41.9070,lng:12.4620},
+ {label:"鲜花广场",lat:41.8956,lng:12.4722},
+ {label:"泰斯塔乔",lat:41.8780,lng:12.4760},
+ {label:"菲乌米奇诺机场 FCO",lat:41.8003,lng:12.2389},
+ {label:"钱皮诺机场 CIA",lat:41.7994,lng:12.5949}
+];
+
+/* ---------- storage ---------- */
+const store = {
+ get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const EXAMPLE = {lat:41.8990,lng:12.4750,label:"万神殿 / 纳沃纳（老城中心）",example:true};
+let hotel = store.get("rom-hotel", null) || EXAMPLE;
+let favs = new Set(store.get("rom-favs", []));
+const S = {tab:"food",food:"all",sight:"top10",dist:"all",foodNear:false,sightNear:false,sel:null,pending:null,q:"",day:0};
+S.tab = store.get("rom-tab","food");
+const h0 = (location.hash||"").replace("#","");
+if (["food","sights","dist","go","notes"].includes(h0)) S.tab = h0;
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rich = s => esc(s).replace(/&lt;b&gt;/g,"<b>").replace(/&lt;\/b&gt;/g,"</b>");
+function hav(a,b){const R=6371,r=Math.PI/180;const dLa=(b.lat-a.lat)*r,dLo=(b.lng-a.lng)*r;const x=Math.sin(dLa/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function fmtD(d){if(d<1)return Math.max(10,Math.round(d*100)*10)+" m";if(d<10)return d.toFixed(1)+" km";return Math.round(d)+" km";}
+function crossesWater(a,b){return false;}
+function advise(d,a,b){
+ const walk=Math.round(d*1.3/4.5*60);
+ if(d<0.9) return {cls:"walk",label:"走路就到",note:`步行约 ${walk} 分钟`};
+ if(d<2.5) return {cls:"walk",label:"步行就好",note:`步行约 ${walk} 分钟，老城里走路往往比坐车快`};
+ if(d<9){const t=Math.round(d*1.35/18*60+10);return {cls:"transit",label:"坐地铁 / 公交",note:`公共交通约 ${t} 分钟（含等车），走路要 ${walk} 分钟`};}
+ if(d<25){const t=Math.round(d*1.3/40*60+15);return {cls:"transit",label:"火车、机场大巴或出租车",note:`约 ${t} 分钟`};}
+ return {cls:"far",label:"一日游距离",note:"见景点里的交通说明"};
+}
+function qOf(p){return p.q || [p.name, p.street ? (p.street+(p.no?" "+p.no:"")) : "", CITY].filter(Boolean).join(", ");}
+function navUrl(p,mode){return `https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${encodeURIComponent(qOf(p))}&travelmode=${mode}`;}
+function navUrlCoord(c,mode){return `https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${c.lat},${c.lng}&travelmode=${mode}`;}
+function norm(s){return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();}
+
+function parseCoords(t){
+ if(!t) return null; t=t.trim();
+ const pats=[/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,/@(-?\d+\.\d+),\s*(-?\d+\.\d+)/,
+  /[?&](?:q|ll|sll|query|destination|daddr|coordinate|center)=(-?\d+\.\d+)(?:,|%2C)\s*(-?\d+\.\d+)/i,
+  /(-?\d{1,2}\.\d{3,})\s*[,，]\s*(-?\d{1,3}\.\d{3,})/,/(-?\d{1,2}\.\d{3,})\s+(-?\d{1,3}\.\d{3,})/];
+ for(const r of pats){const m=t.match(r);if(m){const lat=+m[1],lng=+m[2];if(Math.abs(lat)<=90&&Math.abs(lng)<=180)return {lat,lng};}}
+ const d=t.match(/(\d+)°\s*(\d+)['′]\s*([\d.]+)["″]?\s*([NS])[\s,，]*(\d+)°\s*(\d+)['′]\s*([\d.]+)["″]?\s*([EW])/i);
+ if(d){let lat=+d[1]+d[2]/60+d[3]/3600,lng=+d[5]+d[6]/60+d[7]/3600;if(/s/i.test(d[4]))lat=-lat;if(/w/i.test(d[8]))lng=-lng;return {lat,lng};}
+ return null;
+}
+function parseError(t){
+ if(/goo\.gl|maps\.app/i.test(t)) return "这是分享短链接，里面没有坐标。请在浏览器打开它，复制地址栏里的完整链接；或者在地图里长按酒店，复制坐标。";
+ return "没认出坐标。请粘贴形如 41.0082, 28.9784 的坐标，或 Google 地图的完整链接。";
+}
+const CENTER={lat:41.8986,lng:12.4769};
+const CENTER_NAME="万神殿";
+
+/* ---------- favorites ---------- */
+function favBtn(p){
+ const on=favs.has(p.id);
+ return `<button class="fav" type="button" data-fav="${p.id}" aria-pressed="${on}" aria-label="${on?"移出想去清单":"加入想去清单"}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>${on?"想去":""}</button>`;
+}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);store.set("rom-favs",[...favs]);renderAll();}
+
+/* ---------- card ---------- */
+function distBlock(p){
+ const d=hav(hotel,p),a=advise(d,hotel,p);
+ return `<div class="dist ${a.cls}"><span class="km">${fmtD(d)}</span><span class="how"><b>${a.label}</b><span>${a.note}</span></span></div>`;
+}
+function addrLine(p){
+ const plate=p.no?`<span class="plate">${esc(p.no)}</span>`:"";
+ const st=p.street?`<span class="addr">${esc(p.street)} ${plate}</span>`:"";
+ return `<div class="meta">${st}<span>${esc(p.area)}</span>${p.badge?`<span class="tag">${esc(p.badge)}</span>`:""}</div>`;
+}
+function actions(p,noMap){
+ const d=hav(hotel,p),walk=d<2.5&&!crossesWater(hotel,p),far=d>45;
+ const primary=walk?["walking","步行导航"]:["transit","公交导航"];
+ const second=walk?["transit","公交导航"]:["walking","步行导航"];
+ return `<div class="actions">
+  <a class="btn primary" href="${navUrl(p,far?"transit":primary[0])}" target="_blank" rel="noopener">${far?"查看路线":primary[1]}</a>
+  ${far?"":`<a class="btn" href="${navUrl(p,second[0])}" target="_blank" rel="noopener">${second[1]}</a>`}
+  ${noMap?"":`<button class="btn" type="button" data-onmap="${p.id}">地图上看</button>`}</div>`;
+}
+function foodCard(p){
+ return `<article class="place"><div class="place-top"><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+  <p class="zh">${esc(p.zh)}</p>${addrLine(p)}
+  <dl class="facts"><div><dt>价位</dt><dd>${esc(p.price)}</dd></div><div><dt>必点</dt><dd>${esc(p.order)}</dd></div></dl>
+  <details class="more"><summary>为什么靠谱 · 提醒</summary><dl class="facts"><div><dt>靠谱在</dt><dd>${esc(p.why)}</dd></div><div><dt>提醒</dt><dd>${esc(p.tip)}</dd></div></dl></details>
+  ${distBlock(p)}${actions(p)}</article>`;
+}
+function sightCard(p){
+ return `<article class="place"><div class="place-top"><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+  <p class="zh">${esc(p.zh)}</p>${addrLine(p)}
+  <dl class="facts"><div><dt>门票</dt><dd>${esc(p.price)}</dd></div><div><dt>时间</dt><dd>${rich(p.hours)}</dd></div></dl>
+  <details class="more"><summary>最佳时段 · 交通 · 提醒</summary><dl class="facts"><div><dt>最佳</dt><dd>${esc(p.best)}</dd></div><div><dt>交通</dt><dd>${esc(p.go)}</dd></div><div><dt>提醒</dt><dd>${esc(p.tip)}</dd></div></dl></details>
+  ${distBlock(p)}${actions(p)}</article>`;
+}
+const VCLS={ok:"v-ok",warn:"v-warn",meh:"v-meh",skip:"v-skip"};
+function hypeRow(h){
+ const p=h.ref?BY[h.ref]:null;
+ const v=h.v||p.verdict, l=h.l||p.vlabel, x=h.x||p.text, t=h.t||(p.name+" · "+p.zh);
+ return `<div class="hype-row"><div class="hype-head"><h3>${esc(t)}</h3><span class="verdict ${VCLS[v]}">${esc(l)}</span></div><p>${esc(x)}</p>${p?distBlock(p)+actions(p):""}</div>`;
+}
+
+/* ---------- illustrations (original drawings) ---------- */
+function svgWrap(label,inner){return `<svg class="illus" viewBox="0 0 360 202" role="img" aria-label="${label}插画" preserveAspectRatio="xMidYMid slice">${inner}</svg>`;}
+function rep(n,f){let o="";for(let i=0;i<n;i++)o+=f(i);return o;}
+function pine(x,y,s){s=s||1;return `<rect x="${x-2*s}" y="${y}" width="${4*s}" height="${30*s}" fill="var(--shade)"/><ellipse cx="${x}" cy="${y}" rx="${26*s}" ry="${10*s}" fill="var(--hill)"/><ellipse cx="${x+8*s}" cy="${y-6*s}" rx="${16*s}" ry="${7*s}" fill="var(--hill)"/>`;}
+function domeR(cx,y,r,col){return `<path d="M${cx-r} ${y}A${r} ${r} 0 0 1 ${cx+r} ${y}z" fill="${col||"var(--dome)"}"/><rect x="${cx-r*0.18}" y="${y-r-r*0.35}" width="${r*0.36}" height="${r*0.35}" fill="${col||"var(--dome)"}"/><rect x="${cx-1}" y="${y-r-r*0.35-8}" width="2" height="8" fill="var(--star)"/>`;}
+function artColosseo(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="176" width="360" height="26" fill="var(--stone-2)"/>`;
+ g+=`<path d="M40 176V58Q190 30 330 70V176z" fill="var(--stone)"/><path d="M230 176V60l30 4 10 30-14 40 20 42z" fill="var(--stone-2)"/><path d="M330 70l-20 30 10 50-6 26h16z" fill="var(--shade)" opacity=".5"/>`;
+ [[64,"var(--shade)"],[92,"var(--shade)"],[120,"var(--shade)"]].forEach(([y],r)=>{g+=rep(9-(r===0?0:0),i=>{const x=52+i*21;return x<228?`<path d="M${x} ${y+18}v-12a6 6 0 0 1 12 0v12z" fill="var(--shade)"/>`:"";});g+=`<rect x="40" y="${y+20}" width="190" height="3" fill="var(--stone-2)"/>`;});
+ g+=rep(9,i=>{const x=52+i*21;return x<228?`<path d="M${x} 176v-24a6 6 0 0 1 12 0v24z" fill="var(--night)" opacity=".7"/>`:"";});
+ g+=rep(8,i=>`<rect x="${56+i*21}" y="62" width="6" height="8" fill="var(--shade)"/>`);
+ g+=pine(332,128,0.9);
+ return svgWrap("斗兽场",g);
+}
+function artForo(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><path d="M0 120Q90 96 180 108T360 100V202H0z" fill="var(--hill)"/><rect y="168" width="360" height="34" fill="var(--stone-2)"/>`;
+ g+=`<rect x="40" y="70" width="110" height="10" fill="var(--stone)"/><rect x="36" y="64" width="118" height="7" fill="var(--stone-2)"/>`+rep(6,i=>`<rect x="${44+i*19}" y="80" width="9" height="88" fill="var(--stone)"/><rect x="${42+i*19}" y="80" width="13" height="4" fill="var(--stone-2)"/>`);
+ g+=rep(3,i=>`<rect x="${216+i*26}" y="${92+i*8}" width="11" height="${76-i*8}" fill="var(--stone)"/><rect x="${213+i*26}" y="${90+i*8}" width="17" height="4" fill="var(--stone-2)"/>`);
+ g+=`<path d="M290 168v-56h52v56h-14v-26a12 12 0 0 0-24 0v26z" fill="var(--stone)"/><rect x="286" y="104" width="60" height="9" fill="var(--stone-2)"/>`;
+ g+=rep(5,i=>`<rect x="${170+i*14}" y="${158+(i%2)*4}" width="10" height="${10-(i%2)*4}" fill="var(--stone)"/>`);
+ g+=pine(196,82,0.8);
+ return svgWrap("古罗马广场",g);
+}
+function artPantheon(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="176" width="360" height="26" fill="var(--stone-2)"/>`;
+ g+=`<rect x="150" y="70" width="170" height="106" fill="var(--stone-2)"/>`;
+ g+=`<path d="M163 74A72 72 0 0 1 307 74z" fill="var(--dome)"/><path d="M226 6h18v8h-18z" fill="var(--stone)"/>`;
+ g+=`<path d="M40 82l80 -36 80 36z" fill="var(--stone)"/><path d="M60 80l60 -26 60 26z" fill="var(--stone-2)"/><rect x="40" y="82" width="160" height="12" fill="var(--stone)"/>`;
+ g+=rep(8,i=>`<rect x="${46+i*20}" y="94" width="8" height="82" fill="var(--stone)"/>`)+`<rect x="40" y="94" width="160" height="2" fill="var(--shade)"/>`;
+ g+=`<path d="M108 176v-50a12 12 0 0 1 24 0v50z" fill="var(--night)" opacity=".75"/>`;
+ return svgWrap("万神殿",g);
+}
+function artTrevi(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/>`;
+ g+=`<rect x="20" y="30" width="320" height="120" fill="var(--stone)"/><rect x="20" y="26" width="320" height="8" fill="var(--stone-2)"/>`;
+ g+=rep(9,i=>`<rect x="${30+i*36}" y="40" width="6" height="100" fill="var(--stone-2)"/>`)+rep(8,i=>`<rect x="${42+i*36}" y="54" width="18" height="24" fill="var(--shade)" opacity=".55"/>`);
+ g+=`<path d="M140 150v-80a40 40 0 0 1 80 0v80z" fill="var(--stone-2)"/><path d="M152 150v-70a28 28 0 0 1 56 0v70z" fill="var(--shade)" opacity=".5"/>`;
+ g+=`<path d="M180 92a8 8 0 1 1 0 .1zM172 104h16l4 30h-24z" fill="var(--stone)"/>`;
+ g+=`<path d="M60 150l40 -18 30 10 30 -10 40 6 30 -12 40 14 30 10z" fill="var(--stone-2)"/>`;
+ g+=`<rect y="150" width="360" height="52" fill="var(--river)"/>`+rep(10,i=>`<path d="M${20+i*34} ${166+(i%3)*9}q8 -4 16 0" fill="none" stroke="var(--stone)" stroke-width="2"/>`);
+ g+=`<path d="M170 150q10 -16 20 0" fill="none" stroke="var(--stone)" stroke-width="3"/>`;
+ return svgWrap("特莱维喷泉",g);
+}
+function artSpagna(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/>`;
+ g+=`<rect x="120" y="40" width="120" height="50" fill="var(--stone)"/>`+[[132,20],[218,20]].map(([x,top])=>`<rect x="${x}" y="${top}" width="22" height="70" fill="var(--stone)"/><path d="M${x-2} ${top}h26l-13 -14z" fill="var(--shade)"/><rect x="${x+7}" y="${top+14}" width="8" height="12" fill="var(--shade)"/>`).join("");
+ g+=`<path d="M168 90v-24a12 12 0 0 1 24 0v24z" fill="var(--shade)"/>`;
+ g+=rep(12,i=>{const y=90+i*8.5,w=120+i*20;return `<rect x="${180-w/2}" y="${y}" width="${w}" height="9" fill="${i%2?"var(--stone)":"var(--stone-2)"}"/>`;});
+ g+=rep(6,i=>`<circle cx="${70+i*44}" cy="${118+((i*31)%40)}" r="5" fill="var(--roof)"/>`);
+ g+=`<rect x="0" y="80" width="70" height="122" fill="color-mix(in srgb,var(--roof) 45%,var(--stone))"/><rect x="290" y="80" width="70" height="122" fill="color-mix(in srgb,var(--tile) 40%,var(--stone))"/>`;
+ return svgWrap("西班牙台阶",g);
+}
+function artVaticanMuseums(){
+ let g=`<rect width="360" height="202" fill="var(--stone)"/>`;
+ for(let i=0;i<9;i++){const r=150-i*15;g+=`<ellipse cx="180" cy="${40+i*16}" rx="${r}" ry="${r*0.22}" fill="none" stroke="${i%2?"var(--shade)":"var(--stone-2)"}" stroke-width="10"/>`;}
+ g+=rep(18,i=>{const a=i/18*Math.PI*2;return `<rect x="${(180+Math.cos(a)*140).toFixed(1)}" y="${(38+Math.sin(a)*30).toFixed(1)}" width="2" height="10" fill="var(--tile)"/>`;});
+ g+=`<ellipse cx="180" cy="184" rx="30" ry="7" fill="var(--night)" opacity=".6"/><circle cx="180" cy="16" r="10" fill="var(--sky)"/>`;
+ return svgWrap("梵蒂冈博物馆螺旋楼梯",g);
+}
+function artStPeter(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="172" width="360" height="30" fill="var(--stone-2)"/>`;
+ g+=`<rect x="120" y="96" width="120" height="76" fill="var(--stone)"/><path d="M116 98l64 -18 64 18z" fill="var(--stone-2)"/>`+rep(8,i=>`<rect x="${126+i*14}" y="104" width="6" height="68" fill="var(--stone-2)"/>`);
+ g+=`<rect x="150" y="62" width="60" height="22" fill="var(--stone)"/>`+rep(6,i=>`<rect x="${154+i*9.5}" y="66" width="4" height="14" fill="var(--shade)"/>`);
+ g+=`<path d="M146 64A34 40 0 0 1 214 64z" fill="var(--dome)"/><rect x="174" y="14" width="12" height="12" fill="var(--stone)"/><path d="M172 15l8 -8 8 8z" fill="var(--dome)"/><rect x="179" y="0" width="2" height="8" fill="var(--star)"/>`;
+ g+=`<path d="M0 172V138q60 -10 116 -4V172z" fill="var(--stone)"/><path d="M360 172V138q-60 -10 -116 -4V172z" fill="var(--stone)"/>`+rep(8,i=>`<rect x="${6+i*13}" y="${140+i*0.2}" width="5" height="32" fill="var(--stone-2)"/><rect x="${249+i*13}" y="140" width="5" height="32" fill="var(--stone-2)"/>`);
+ g+=`<rect x="178" y="128" width="4" height="44" fill="var(--shade)"/><path d="M178 128l2 -8 2 8z" fill="var(--shade)"/>`;
+ return svgWrap("圣彼得大教堂",g);
+}
+function artCastel(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="150" width="360" height="52" fill="var(--river)"/>`;
+ g+=`<rect x="90" y="70" width="180" height="80" fill="var(--stone-2)"/><rect x="120" y="44" width="120" height="30" fill="var(--stone)"/><rect x="150" y="24" width="60" height="22" fill="var(--stone-2)"/>`;
+ g+=rep(10,i=>`<rect x="${96+i*17}" y="64" width="8" height="8" fill="var(--stone-2)"/>`)+rep(5,i=>`<rect x="${128+i*22}" y="54" width="8" height="12" fill="var(--shade)"/>`);
+ g+=`<path d="M180 6l-6 18h12z" fill="var(--shade)"/><path d="M172 12l16 4" stroke="var(--shade)" stroke-width="2"/>`;
+ g+=`<rect x="0" y="146" width="360" height="8" fill="var(--stone)"/>`+rep(5,i=>`<path d="M${i*80-10} 182a30 26 0 0 1 60 0z" fill="var(--stone)"/>`)+`<rect x="0" y="154" width="360" height="12" fill="var(--stone)"/>`;
+ g+=rep(6,i=>`<rect x="${20+i*64}" y="132" width="4" height="14" fill="var(--stone-2)"/><circle cx="${22+i*64}" cy="128" r="5" fill="var(--stone-2)"/>`);
+ return svgWrap("圣天使城堡和天使桥",g);
+}
+function artNavona(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="150" width="360" height="52" fill="var(--stone-2)"/>`;
+ g+=rep(6,i=>{const x=i*60,h=60+((i*23)%30);const col=["color-mix(in srgb,var(--roof) 45%,var(--stone))","color-mix(in srgb,var(--tile) 40%,var(--stone))","var(--stone)"][i%3];return `<rect x="${x}" y="${150-h}" width="60" height="${h}" fill="${col}"/>`+rep(2,j=>`<rect x="${x+12+j*24}" y="${160-h}" width="10" height="14" fill="var(--shade)" opacity=".7"/>`);});
+ g+=`<rect x="250" y="40" width="70" height="110" fill="var(--stone)"/>`+domeR(285,60,24,"var(--dome)")+[[252,30],[306,30]].map(([x,t])=>`<rect x="${x}" y="${t}" width="12" height="20" fill="var(--stone)"/>`).join("");
+ g+=`<rect x="174" y="40" width="12" height="96" fill="var(--stone)"/><path d="M174 40l6 -14 6 14z" fill="var(--stone)"/>`;
+ g+=`<path d="M140 150q10 -20 26 -16l14 -6 14 6q16 -4 26 16z" fill="var(--stone-2)"/><ellipse cx="180" cy="160" rx="70" ry="10" fill="var(--river)"/>`;
+ return svgWrap("纳沃纳广场",g);
+}
+function artGianicolo(){
+ let g=`<defs><linearGradient id="sunr" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--night)"/><stop offset="1" stop-color="var(--roof)"/></linearGradient></defs><rect width="360" height="202" fill="url(#sunr)"/><circle cx="90" cy="118" r="20" fill="var(--star)" opacity=".85"/>`;
+ g+=`<path d="M0 140h30v-14h20v14h30v-8h24v8h40v-20h12v20h30v-10h16v10h36v-14h18v14h104v62H0z" fill="var(--night)"/>`;
+ g+=domeR(170,120,18,"var(--night)")+domeR(250,126,12,"var(--night)")+domeR(60,128,10,"var(--night)");
+ g+=`<rect x="310" y="96" width="5" height="44" fill="var(--night)"/>`;
+ g+=pine(30,96,1.1).replace(/var\(--(hill|shade)\)/g,"var(--night)")+pine(338,104,1).replace(/var\(--(hill|shade)\)/g,"var(--night)");
+ g+=`<rect y="176" width="360" height="26" fill="var(--night)"/><path d="M0 176h360" stroke="var(--star)" stroke-opacity=".3"/>`;
+ return svgWrap("贾尼科洛山日落",g);
+}
+
+/* ---------- Top 10 two-day route ---------- */
+const ROUTE = [
+ {title:"第一天 · 古罗马和老城",sub:"斗兽场、古罗马广场、万神殿、特莱维喷泉、西班牙台阶",start:"建议 8:30 从斗兽场开始",note:"斗兽场提前 30 天在官网订 8:30 时段。冬季斗兽场 16:30 就关门，所以古罗马放在上午。",
+  bounds:{lat0:41.9075,lat1:41.8880,lng0:12.4715,lng1:12.4965},
+  stops:[
+   {id:"colosseo",time:"8:30 第一个时段",art:artColosseo,why:"公元 80 年建成、能装约五万人的竞技场，是罗马最有代表性的古迹。",tip:"€18 实名票，名字要和护照一致。门口拉你合影的“角斗士”拍完会要钱。"},
+   {id:"foro",time:"10:00–12:00",art:artForo,why:"古罗马的政治中心，恺撒神庙、元老院、凯旋门都在这里；帕拉蒂尼山是罗马建城的地方。",tip:"同一张联票。遗址很晒，带水和帽子。"},
+   {id:"pantheon",time:"13:30 左右（先吃午饭）",art:artPantheon,why:"近 1,900 年前的混凝土穹顶至今完好，中午阳光从圆洞照下来。",tip:"€5，7 月起 €7。午饭在旁边的 Armando al Pantheon（要订位）。"},
+   {id:"trevi",time:"15:00 左右",art:artTrevi,why:"罗马最有名的喷泉，背对喷泉扔一枚硬币，传说就会再回罗马。",tip:"白天近看 €2，上方广场看免费。这里小偷很多。"},
+   {id:"spagna",time:"16:00 后，接着去 Pincio 看日落",art:artSpagna,why:"135 级台阶连到山上的教堂，是电影《罗马假日》的取景地。",tip:"台阶上不能坐，会罚款。爬上去往北走 10 分钟到平丘平台看日落。"}
+  ],
+  legs:[
+   {segs:[{m:"walk",v:[[41.8902,12.4922],[41.8905,12.4898],[41.8907,12.4884],[41.8915,12.4868],[41.8925,12.4853]]}],text:"出斗兽场往西，经过提图斯凯旋门进入古罗马广场。"},
+   {segs:[{m:"walk",v:[[41.8925,12.4853],[41.8933,12.4835],[41.8946,12.4831],[41.8958,12.4810],[41.8975,12.4790],[41.8986,12.4769]]}],text:"从卡比托利欧山一侧出口出来，经过威尼斯广场的白色纪念堂，沿小街往西北走到万神殿。"},
+   {segs:[{m:"walk",v:[[41.8986,12.4769],[41.8992,12.4790],[41.9000,12.4812],[41.9009,12.4833]]}],text:"穿过小巷往东，跟着人流就到特莱维喷泉。"},
+   {segs:[{m:"walk",v:[[41.9009,12.4833],[41.9025,12.4830],[41.9042,12.4828],[41.9059,12.4823]]}],text:"往北沿 Via della Stamperia 一带走到西班牙广场。"}
+  ],
+  end:"看完日落从平丘平台走下人民广场（Piazza del Popolo），坐地铁 A 线 Flaminio 站，或从西班牙台阶旁的 Spagna 站回酒店。"},
+ {title:"第二天 · 梵蒂冈到特拉斯提弗列",sub:"梵蒂冈博物馆、圣彼得大教堂、圣天使城堡、纳沃纳广场，贾尼科洛山看日落",start:"建议 8:00 前到梵蒂冈博物馆",note:"别排在周日（博物馆关门）和周三上午（教皇公开接见）。进教堂要遮住肩膀和膝盖。",
+  bounds:{lat0:41.9090,lat1:41.8870,lng0:12.4490,lng1:12.4790},
+  stops:[
+   {id:"vaticanmuseums",time:"开馆第一个时段",art:artVaticanMuseums,why:"拉斐尔画室、西斯廷礼拜堂米开朗基罗的天顶画和《最后的审判》都在这里。",tip:"€20 + €5 预约费，官网提前 60 天放票。至少留 3 小时；西斯廷礼拜堂禁止拍照。"},
+   {id:"stpeter",time:"12:30 左右",art:artStPeter,why:"世界最大的天主教堂，米开朗基罗设计的穹顶、《圣殇》雕像都在里面。",tip:"免费，排安检队。门口卖“快速通道”的不用理。午饭可以在附近的 Pizzarium 买切块披萨。"},
+   {id:"castel",time:"14:30 左右",art:artCastel,why:"从哈德良皇帝的陵墓变成教皇城堡，顶层能看圣彼得穹顶和台伯河。",tip:"€15。天使桥上的天使雕像出自贝尔尼尼工作室。"},
+   {id:"navona",time:"16:00 左右",art:artNavona,why:"椭圆形的巴洛克广场，中间是贝尔尼尼的四河喷泉。",tip:"广场边喝东西很贵。12 月有圣诞集市。"},
+   {id:"gianicolo",time:"日落（10 月底约 17:00，11–12 月约 16:45）",art:artGianicolo,why:"罗马最好的日落观景台之一，整个老城的穹顶都在眼前。",tip:"免费。看完下山到特拉斯提弗列吃晚饭。"}
+  ],
+  legs:[
+   {segs:[{m:"walk",v:[[41.9065,12.4536],[41.9058,12.4560],[41.9046,12.4572],[41.9035,12.4580],[41.9022,12.4570]]}],text:"从博物馆出口出来，沿梵蒂冈城墙往南走到圣彼得广场排安检。"},
+   {segs:[{m:"walk",v:[[41.9022,12.4570],[41.9020,12.4600],[41.9020,12.4630],[41.9025,12.4655],[41.9031,12.4663]]}],text:"出广场沿和解大道（Via della Conciliazione）一直走到河边的城堡。"},
+   {segs:[{m:"walk",v:[[41.9031,12.4663],[41.9018,12.4666],[41.9008,12.4682],[41.9000,12.4705],[41.8992,12.4731]]}],text:"走过天使桥过河，穿小巷到纳沃纳广场。"},
+   {segs:[{m:"walk",v:[[41.8992,12.4731],[41.8970,12.4726],[41.8956,12.4722],[41.8940,12.4712],[41.8924,12.4706],[41.8905,12.4700],[41.8894,12.4700],[41.8892,12.4675],[41.8900,12.4645],[41.8916,12.4613]]}],text:"往南经鲜花广场、走过西斯托桥进入特拉斯提弗列，经圣母教堂广场，再沿 Via Garibaldi 上坡到贾尼科洛山（最后一段约 15 分钟上坡，走不动可以打车）。"}
+  ],
+  end:"下山回特拉斯提弗列吃晚饭（L'Osteria della Trippa 或 Da Enzo al 29），再坐 8 路电车或打车回酒店。"}
+];
+function segLen(v){let d=0;for(let i=1;i<v.length;i++)d+=hav({lat:v[i-1][0],lng:v[i-1][1]},{lat:v[i][0],lng:v[i][1]});return d;}
+function legWalk(L){return L.segs.filter(s=>s.m==="walk").reduce((a,s)=>a+segLen(s.v)*1.15,0);}
+function routeMap(R){
+ const B=R.bounds,W=500;
+ const H=Math.round(W*((B.lat0-B.lat1)*111.2)/((B.lng1-B.lng0)*KMLNG));
+ const pj=(la,ln)=>[(ln-B.lng0)/(B.lng1-B.lng0)*W,(B.lat0-la)/(B.lat0-B.lat1)*H];
+ const path=pts=>pts.map((c,i)=>{const [x,y]=pj(c[0],c[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ");
+ const kmU=W/((B.lng1-B.lng0)*KMLNG);
+ let g=`<rect width="${W}" height="${H}" fill="var(--map-bg)"/><path d="${path(TIBER)}" fill="none" stroke="var(--river)" stroke-width="${(0.09*kmU).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round"/>`;
+ R.legs.forEach(L=>L.segs.forEach(s=>{g+=`<path d="${path(s.v)}" fill="none" stroke="var(--ink)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>`;}));
+ const base=ROUTE.indexOf(R)*5;
+ R.stops.forEach((s,i)=>{const p=BY[s.id];const [x,y]=pj(p.lat,p.lng);g+=`<g data-onmap-svg="${s.id}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="13" fill="var(--red)" stroke="var(--surface)" stroke-width="2.5"/><text x="${x}" y="${y+5}" fill="var(--surface)" font-size="15" font-weight="700" text-anchor="middle" font-family="var(--f-sign)">${base+i+1}</text></g>`;});
+ if(hotel.lat<=B.lat0&&hotel.lat>=B.lat1&&hotel.lng>=B.lng0&&hotel.lng<=B.lng1){const [x,y]=pj(hotel.lat,hotel.lng);g+=`<circle cx="${x}" cy="${y}" r="9" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/><path d="M${x-5} ${y+4}v-5l5-4 5 4v5z" fill="var(--surface)"/>`;}
+ g+=`<g transform="translate(14 ${H-14})"><path d="M0 0h${(kmU*0.5).toFixed(1)}M0 -5v5M${(kmU*0.5).toFixed(1)} -5v5" stroke="var(--map-ink)" stroke-width="1.5" fill="none"/><text x="${(kmU*0.25).toFixed(1)}" y="-7" fill="var(--map-ink)" font-size="11" text-anchor="middle" font-family="var(--f-sign)">500 m</text></g>`;
+ return `<div class="mapwrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${R.title}路线示意图">${g}</svg></div><div class="map-legend"><span><i style="border-top:3px dashed var(--ink);height:0;width:18px"></i>步行</span><span><i style="background:var(--river);height:6px;width:18px"></i>台伯河</span></div>`;
+}
+function renderRoute(){
+ const R=ROUTE[S.day],base=S.day*5;
+ const total=R.legs.reduce((a,L)=>a+legWalk(L),0);
+ const ids=R.stops.map(s=>s.id);
+ const routeUrl=`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(qOf(BY[ids[0]]))}&destination=${encodeURIComponent(qOf(BY[ids[4]]))}&waypoints=${ids.slice(1,4).map(i=>encodeURIComponent(qOf(BY[i]))).join("%7C")}&travelmode=walking`;
+ const d0=hav(hotel,BY[ids[0]]);
+ let h=`<div class="day-tabs" role="group" aria-label="选择第几天">${ROUTE.map((r,i)=>`<button class="chip" type="button" data-day="${i}" aria-pressed="${i===S.day}">${esc(r.title)}<small>第 ${i*5+1}–${i*5+5} 站</small></button>`).join("")}</div>`;
+ h+=`<div class="panel route-head"><h3>${esc(R.title)}：不走回头路</h3>
+  <p class="note">${esc(R.sub)}。${esc(R.note)}</p>
+  <div class="route-sum"><span>全程步行约 <b>${total.toFixed(1)} km</b></span><span>${esc(R.start)}</span></div>
+  ${routeMap(R)}
+  <div class="actions"><a class="btn primary" href="${routeUrl}" target="_blank" rel="noopener">在 Google 地图打开全程</a><a class="btn" href="${navUrl(BY[ids[0]],d0<2.5?"walking":"transit")}" target="_blank" rel="noopener">从酒店到第 ${base+1} 站（${fmtD(d0)}）</a></div>
+  <p class="note">插画为示意，非实景照片。</p></div><div>`;
+ R.stops.forEach((s,i)=>{
+  const p=BY[s.id];
+  h+=`<article class="stop-card">${s.art()}
+   <div class="stop-title"><span class="stop-no">${base+i+1}</span><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+   <div class="stop-body"><p class="zh">${esc(p.zh)} · <span class="stop-time">${esc(s.time)}</span></p>
+   <p>${esc(s.why)}</p>
+   <dl class="facts"><div><dt>门票</dt><dd>${esc(p.price)}</dd></div><div><dt>提醒</dt><dd>${esc(s.tip)}</dd></div></dl>
+   <div class="actions"><button class="btn" type="button" data-onmap="${p.id}">离酒店多远</button></div></div></article>`;
+  if(i<R.legs.length){const L=R.legs[i],d=legWalk(L),m=Math.max(3,Math.round(d/4.5*60));
+   h+=`<div class="leg"><span>步行 <b>${m} 分钟</b> · <b>${fmtD(d)}</b></span><span>${esc(L.text)}</span></div>`;}
+  else h+=`<div class="leg"><span><b>当天结束</b></span><span>${esc(R.end)}</span></div>`;
+ });
+ h+=`</div>`;
+ $("#sightList").innerHTML=h;
+}
+
+/* ---------- Top 10 trap ranking ---------- */
+const TOP10 = [
+ {id:"colosseo",st:5,v:"ok",l:"必去",why:"罗马的标志，没有之一。",trap:"票是实名的，第三方倒卖的票进不去也不退。只在官网 ticketing.colosseo.it 买，提前 30 天放票；门口“角斗士”合影要钱。"},
+ {id:"vaticanmuseums",st:5,v:"ok",l:"必去",why:"西斯廷礼拜堂天顶画，一生要看一次。",trap:"周日关门（最后一个周日免费但排长队）。Ottaviano 地铁口有人卖加价“免排队团”，只在官网 museivaticani.va 买（€20 + €5）。"},
+ {id:"pantheon",st:5,v:"ok",l:"必去",why:"近 1,900 年的穹顶，进去会被震撼。",trap:"门票 €5，2026 年 7 月起 €7；不用找人代买“快速票”，现场排队很快。"},
+ {id:"stpeter",st:5,v:"ok",l:"必去",why:"免费就能看米开朗基罗的穹顶和《圣殇》。",trap:"教堂本身免费，门口卖“快速通道”的不用买。肩膀膝盖露出来会被安检拦下；周三上午人最多。"},
+ {id:"trevi",st:4,v:"warn",l:"值得，挑时间",why:"许愿池，扔硬币很有仪式感。",trap:"2026 年 2 月起白天近看 €2；人挤人小偷多，周边餐厅游客价。清早或晚上去，晚上近看免费。"},
+ {id:"foro",st:4,v:"ok",l:"值得",why:"和斗兽场同一张票，古罗马的心脏。",trap:"很多人只看斗兽场就走了，其实联票已包含；遗址很晒，冬季 16:30 关门，别排在下午。"},
+ {id:"spagna",st:3,v:"warn",l:"看看就走",why:"《罗马假日》取景地。",trap:"台阶上不能坐（会罚款），也不能吃东西；送玫瑰、绑手绳的人特别多。旁边的老咖啡馆坐下点单很贵。"},
+ {id:"navona",st:3,v:"warn",l:"逛，不在广场吃",why:"巴洛克广场，喷泉很美。",trap:"广场边喝东西、吃饭都是游客价；圣诞集市多是便宜进口货。"},
+ {id:"trastevere",st:3,v:"warn",l:"值得，餐厅要挑",why:"老罗马的街巷，晚上很热闹。",trap:"越来越游客化，门口拉客的店别进；热门小馆要订位或早到排队。"},
+ {id:"trevix",st:0,v:"skip",l:"只看不吃",why:"景点门口的餐厅位置方便。",trap:"拉客、配图菜单、“tourist menu”、没菜单不报价，最后账单翻倍。往旁边走两条街，找意大利语手写菜单的店。"}
+];
+function stars(n){return `<span class="st" aria-label="必去指数 ${n} 星（满分 5）">${"★".repeat(n)}<i>${"★".repeat(5-n)}</i></span>`;}
+function renderTop10(){
+ let h=`<p class="lead">小红书上最常见的 10 个地方，按必去程度从高到低排，每个都写了最容易踩的雷。</p><div class="top10">`;
+ TOP10.forEach((t,i)=>{const p=BY[t.id];const x=p.type==="x";
+  h+=`<article class="t10"><span class="rk ${t.st<3?"low":""}">${i+1}</span>
+   <div class="hd"><h3>${esc(p.zh)}</h3><span class="verdict ${VCLS[t.v]}">${esc(t.l)}</span></div>
+   <div class="bd">${stars(t.st)}<p>${esc(t.why)}</p><p class="trap"><b>排雷：</b>${esc(t.trap)}</p>${x?"":distBlock(p)}
+   ${x?"":`<div class="actions"><button class="btn" type="button" data-onmap="${p.id}">地图上看</button></div>`}</div></article>`;});
+ h+=`</div>`;
+ $("#sightList").innerHTML=h;
+}
+
+/* ---------- renderers ---------- */
+function chipRow(el,types,cur,key){
+ el.innerHTML=Object.entries(types).map(([k,v])=>`<button class="chip" type="button" data-${key}="${k}" aria-pressed="${k===cur}">${v}</button>`).join("");
+}
+function sortNear(list,on){return on?list.slice().sort((a,b)=>hav(hotel,a)-hav(hotel,b)):list;}
+function renderFood(){
+ chipRow($("#foodChips"),FOOD_TYPES,S.food,"food");
+ $("#foodNear").checked=S.foodNear;
+ $("#foodNear").parentElement.hidden=S.food==="hype";
+ if(S.food==="hype"){$("#foodList").innerHTML=`<p class="lead">小红书上常见的店和吃法，逐个说值不值。</p>`+HYPE.map(hypeRow).join("");return;}
+ const list=P.filter(p=>p.kind==="food"&&p.type!=="hype"&&(S.food==="all"||p.type===S.food));
+ $("#foodList").innerHTML=sortNear(list,S.foodNear).map(foodCard).join("");
+}
+function renderSights(){
+ chipRow($("#sightChips"),SIGHT_TYPES,S.sight,"sight");
+ $("#sightNear").checked=S.sightNear;
+ $("#sightNearWrap").hidden=["photo","plan","top10","trap10"].includes(S.sight);
+ if(S.sight==="top10"){renderRoute();return;}
+ if(S.sight==="trap10"){renderTop10();return;}
+ if(S.sight==="photo"){
+  $("#sightList").innerHTML=`<p class="lead">人少又好看的机位优先。点名字看离酒店多远。</p><div class="rows">`+PHOTO.map(([t,x,id])=>{const p=BY[id],d=hav(hotel,p),a=advise(d,hotel,p);
+   return `<button class="row ${a.cls}" type="button" data-onmap="${id}"><span class="rn">${esc(t)}<small style="text-transform:none;font-family:var(--f-body);letter-spacing:0">${esc(x)}</small></span><span class="rd">${fmtD(d)}<small>${a.label}</small></span></button>`}).join("")+`</div>`;
+  return;
+ }
+ if(S.sight==="plan"){
+  $("#sightList").innerHTML=`<p class="lead">按区域排 4–5 天，前两天就是 Top 10 路线。每站右边是离你酒店的距离。</p>`+DAYS.map(day=>{
+   const ids=day.stops.map(s=>s[0]);
+   let route="";
+   if(!day.noroute){
+    const last=BY[ids[ids.length-1]],mid=ids.slice(0,-1).map(i=>encodeURIComponent(qOf(BY[i]))).join("%7C");
+    route=`<div class="actions"><a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${encodeURIComponent(qOf(last))}&waypoints=${mid}&travelmode=transit" target="_blank" rel="noopener">在 Google 地图看这天的路线</a></div>`;
+   }
+   return `<div class="day"><div class="day-h"><span class="dn">${day.n}</span><h3>${esc(day.t)}</h3></div>
+    <ol class="stops">${day.stops.map(([id,txt])=>`<li><span>${esc(txt)}</span><span class="sd">${fmtD(hav(hotel,BY[id]))}</span></li>`).join("")}</ol>
+    ${day.note?`<p class="note">${esc(day.note)}</p>`:""}${route}</div>`;}).join("");
+  return;
+ }
+ const list=P.filter(p=>p.kind==="sight"&&p.type===S.sight);
+ $("#sightList").innerHTML=sortNear(list,S.sightNear).map(sightCard).join("");
+}
+
+/* ---------- hotel ---------- */
+function renderHotel(){
+ $("#hotelChip").classList.toggle("example",!!hotel.example);
+ $("#hotelChipText").textContent=hotel.example?"示例位置 · 设置酒店":(hotel.label||"我的酒店");
+ $("#hotelName").textContent=hotel.example?`示例：${hotel.label}`:(hotel.label||"我的酒店");
+ $("#hotelCoord").textContent=(hotel.example?"换成你的酒店后，全站距离会自动更新 · ":"")+`${hotel.lat.toFixed(5)}, ${hotel.lng.toFixed(5)} · 离${CENTER_NAME} ${fmtD(hav(hotel,CENTER))}`;
+ $("#presets").innerHTML=PRESETS.map((p,i)=>`<button class="chip" type="button" data-preset="${i}">${p.label}</button>`).join("");
+}
+function setHotel(h,msg){hotel=h;store.set("rom-hotel",h);showMsg(msg||"已保存。全站距离已按新位置更新。",hav(h,CENTER)>35?"warn":"ok",h);renderAll();}
+function showMsg(text,kind,h){
+ const m=$("#hotelMsg");let t=text;
+ if(h&&hav(h,CENTER)>35) t+=` 注意：这个位置离${CENTER_NAME} ${fmtD(hav(h,CENTER))}，确认没粘错？`;
+ m.textContent=t;m.className="msg "+kind;m.hidden=false;
+}
+
+/* ---------- map ---------- */
+const MAP={lat0:41.9200,lat1:41.8680,lng0:12.4380,lng1:12.5080,W:500};
+const KMLNG=111.32*Math.cos(41.9*Math.PI/180);
+MAP.H=Math.round(MAP.W*((MAP.lat0-MAP.lat1)*111.2)/((MAP.lng1-MAP.lng0)*KMLNG));
+const proj=(lat,lng)=>[(lng-MAP.lng0)/(MAP.lng1-MAP.lng0)*MAP.W,(MAP.lat0-lat)/(MAP.lat0-MAP.lat1)*MAP.H];
+const inMap=p=>p.lat<=MAP.lat0&&p.lat>=MAP.lat1&&p.lng>=MAP.lng0&&p.lng<=MAP.lng1;
+// Tiber (schematic, bridge to bridge)
+const TIBER=[[41.9300,12.4690],[41.9200,12.4700],[41.9145,12.4708],[41.9105,12.4718],[41.9070,12.4732],[41.9046,12.4733],[41.9033,12.4708],[41.9018,12.4668],[41.9004,12.4655],[41.8985,12.4645],[41.8960,12.4660],[41.8940,12.4682],[41.8924,12.4706],[41.8915,12.4740],[41.8905,12.4775],[41.8880,12.4795],[41.8850,12.4780],[41.8806,12.4722],[41.8748,12.4688],[41.8690,12.4695],[41.8600,12.4730]];
+const LABELS=[["老城中心",41.9010,12.4760],["梵蒂冈",41.9035,12.4520],["普拉蒂 Prati",41.9110,12.4620],["特拉斯提弗列",41.8860,12.4650],["斗兽场",41.8870,12.4930],["Termini",41.9045,12.5020],["博尔盖塞公园",41.9165,12.4880],["泰斯塔乔",41.8730,12.4790],["台伯河",41.8975,12.4600]];
+function renderMap(){
+ const svg=$("#map"),W=MAP.W,H=MAP.H;
+ svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+ const pathOf=pts=>pts.map((c,i)=>{const [x,y]=proj(c[0],c[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ");
+ let out=`<rect width="${W}" height="${H}" fill="var(--map-bg)"/><path d="${pathOf(TIBER)}" fill="none" stroke="var(--river)" stroke-width="${(0.09*MAP.W/((MAP.lng1-MAP.lng0)*KMLNG)).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round"/>`;
+ out+=LABELS.map(([t,la,ln])=>{const [x,y]=proj(la,ln);const rot=t==="台伯河"?`transform="rotate(-70 ${x} ${y})"`:"";return `<text x="${x}" y="${y}" fill="var(--map-ink)" font-size="${t==="台伯河"?11:12}" text-anchor="middle" font-family="var(--f-body)" ${rot}>${t}</text>`}).join("");
+ const km=W/((MAP.lng1-MAP.lng0)*KMLNG);
+ out+=`<g transform="translate(14 ${H-16})"><path d="M0 0h${km.toFixed(1)}M0 -5v5M${km.toFixed(1)} -5v5" stroke="var(--map-ink)" stroke-width="1.5" fill="none"/><text x="${(km/2).toFixed(1)}" y="-7" fill="var(--map-ink)" font-size="11" text-anchor="middle" font-family="var(--f-sign)">1 km</text></g>`;
+ const pts=P.filter(p=>p.kind!=="transit"&&p.type!=="x"&&inMap(p)&&!["navonaxmas","presepi"].includes(p.id));
+ const sel=S.sel?(BY[S.sel]||S.sel):null;
+ if(sel&&inMap(hotel)&&inMap(sel)){
+  const [x1,y1]=proj(hotel.lat,hotel.lng),[x2,y2]=proj(sel.lat,sel.lng);
+  out+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"/>`;
+  const mx=(x1+x2)/2,my=(y1+y2)/2;
+  out+=`<rect x="${mx-30}" y="${my-12}" width="60" height="22" rx="6" fill="var(--ink)"/><text x="${mx}" y="${my+4}" fill="var(--bg)" font-size="14" font-weight="700" text-anchor="middle" font-family="var(--f-sign)">${fmtD(hav(hotel,sel))}</text>`;
+ }
+ out+=pts.map(p=>{const [x,y]=proj(p.lat,p.lng);const on=S.sel===p.id,fav=favs.has(p.id);
+  const mark=p.kind==="food"?`<circle cx="${x}" cy="${y}" r="${on?7.5:4.5}" fill="var(--red)" stroke="var(--surface)" stroke-width="${fav?2.5:1.5}"/>`
+   :`<rect x="${x-(on?7:4.5)}" y="${y-(on?7:4.5)}" width="${on?14:9}" height="${on?14:9}" fill="var(--blue)" stroke="var(--surface)" stroke-width="${fav?2.5:1.5}"/>`;
+  return `<g data-id="${p.id}" style="cursor:pointer"><title>${esc(p.zh)} ${esc(p.name)}</title><circle cx="${x}" cy="${y}" r="12" fill="transparent"/>${mark}</g>`}).join("");
+ if(sel&&!sel.id&&inMap(sel)){const [x,y]=proj(sel.lat,sel.lng);out+=`<path d="M${x} ${y-9}L${x+8} ${y}L${x} ${y+9}L${x-8} ${y}Z" fill="var(--warn)" stroke="var(--surface)" stroke-width="1.5"/>`;}
+ if(S.pending){const [x,y]=proj(S.pending.lat,S.pending.lng);out+=`<circle cx="${x}" cy="${y}" r="10" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/>`;}
+ if(inMap(hotel)){const [x,y]=proj(hotel.lat,hotel.lng);
+  out+=`<g pointer-events="none"><circle cx="${x}" cy="${y}" r="10" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/><path d="M${x-5} ${y+4}v-5l5-4 5 4v5z" fill="var(--surface)"/><text x="${x+14}" y="${y+4}" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--f-body)" paint-order="stroke" stroke="var(--map-bg)" stroke-width="3">酒店</text></g>`;}
+ svg.innerHTML=out;
+ $("#offmap").textContent=inMap(hotel)?"":"你的酒店在示意图范围外，距离照常计算";
+ const pb=$("#pending");
+ if(S.pending){pb.hidden=false;pb.innerHTML=`<span>把酒店设在这里？离${CENTER_NAME} ${fmtD(hav(S.pending,CENTER))}</span><span class="actions"><button class="btn" type="button" id="pendOk">设为酒店</button><button class="btn ghost" type="button" id="pendNo">取消</button></span>`;}
+ else pb.hidden=true;
+ const sc=$("#selCard");
+ if(!sel){sc.innerHTML=`<p class="note">还没选目的地。点地图上的点，或在下面搜索。</p>`;return;}
+ if(sel.id){
+  sc.innerHTML=`<div class="place-top"><span class="sign">${esc(sel.name)}</span>${favBtn(sel)}</div><p class="zh">${esc(sel.zh)}</p>${addrLine(sel)}${distBlock(sel)}${actions(sel,true)}`;
+ } else {
+  const d=hav(hotel,sel),a=advise(d,hotel,sel);
+  sc.innerHTML=`<p class="zh">自定义目的地 · ${sel.lat.toFixed(5)}, ${sel.lng.toFixed(5)}</p><div class="dist ${a.cls}"><span class="km">${fmtD(d)}</span><span class="how"><b>${a.label}</b><span>${a.note}</span></span></div><div class="actions"><a class="btn primary" href="${navUrlCoord(sel,"walking")}" target="_blank" rel="noopener">步行导航</a><a class="btn" href="${navUrlCoord(sel,"transit")}" target="_blank" rel="noopener">公交导航</a></div>`;
+ }
+}
+function svgPoint(e){const svg=$("#map"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
+
+/* ---------- search ---------- */
+const DIST_TYPES={all:"全部",fav:"想去清单",food:"餐厅",sight:"景点",transit:"车站机场"};
+function renderResults(){
+ chipRow($("#distChips"),DIST_TYPES,S.dist,"dist");
+ const q=norm(S.q);
+ const list=P.filter(p=>{
+  if(p.type==="x")return false;
+  if(S.dist==="fav"&&!favs.has(p.id))return false;
+  if(S.dist==="food"&&p.kind!=="food")return false;
+  if(S.dist==="sight"&&p.kind!=="sight")return false;
+  if(S.dist==="transit"&&p.kind!=="transit")return false;
+  if(q&&!norm(p.name+" "+p.zh+" "+p.area+" "+(p.street||"")+" "+(p.order||"")+" "+(p.q||"")).includes(q))return false;
+  return true;}).sort((a,b)=>hav(hotel,a)-hav(hotel,b));
+ if(!list.length){$("#results").innerHTML=`<p class="note" style="padding:12px 14px">${S.dist==="fav"&&!favs.size?"想去清单还是空的。在美食、景点卡片上点星号就能加进来。":"没找到。试试中文名或意大利语名，或者用下面的“清单外的地方”。"}</p>`;return;}
+ $("#results").innerHTML=list.map(p=>{const d=hav(hotel,p),a=advise(d,hotel,p);
+  return `<button class="row ${a.cls}" type="button" data-onmap="${p.id}"><span class="rn">${esc(p.zh)}<small>${esc(p.name)}</small></span><span class="rd">${fmtD(d)}<small>${a.label}</small></span></button>`}).join("");
+}
+
+/* ---------- tabs ---------- */
+function setTab(t){
+ S.tab=t;store.set("rom-tab",t);
+ document.querySelectorAll(".tabbtn").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
+ ["food","sights","dist","go","notes"].forEach(k=>$("#tab-"+k).hidden=k!==t);
+ window.scrollTo(0,0);
+}
+function renderAll(){renderHotel();renderFood();renderSights();renderMap();renderResults();}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+ const g=e.target.closest("[data-onmap-svg]");
+ if(g){S.sel=g.getAttribute("data-onmap-svg");S.pending=null;setTab("dist");renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
+ const t=e.target.closest("button");
+ if(!t)return;
+ if(t.dataset.tab){setTab(t.dataset.tab);return;}
+ if(t.id==="hotelChip"){setTab("dist");return;}
+ if(t.dataset.food){S.food=t.dataset.food;renderFood();return;}
+ if(t.dataset.sight){S.sight=t.dataset.sight;renderSights();return;}
+ if(t.dataset.day){S.day=+t.dataset.day;renderSights();return;}
+ if(t.dataset.dist){S.dist=t.dataset.dist;renderResults();return;}
+ if(t.dataset.fav){toggleFav(t.dataset.fav);return;}
+ if(t.dataset.onmap){S.sel=t.dataset.onmap;S.pending=null;if(S.tab!=="dist")setTab("dist");renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
+ if(t.dataset.preset){const p=PRESETS[+t.dataset.preset];setHotel({lat:p.lat,lng:p.lng,label:p.label+"（大致位置）"},`已设为“${p.label}”的大致位置。订好酒店后再换成准确坐标。`);return;}
+ if(t.dataset.jump){document.getElementById(t.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"});return;}
+ if(t.dataset.copy){const v=t.dataset.copy;const done=()=>{t.textContent="已复制";setTimeout(()=>t.textContent="复制",1500)};
+  try{navigator.clipboard.writeText(v).then(done,()=>selectNear(t));}catch(err){selectNear(t);}return;}
+ if(t.id==="hotelSave"){
+  const raw=$("#hotelInput").value,c=parseCoords(raw);
+  if(!c){showMsg(parseError(raw),"err");return;}
+  setHotel({lat:c.lat,lng:c.lng,label:$("#hotelLabel").value.trim()||"我的酒店"});return;}
+ if(t.id==="pendOk"){const p=S.pending;S.pending=null;setHotel({lat:p.lat,lng:p.lng,label:"地图点选位置"},"已把酒店设在你点的位置。示意图有误差，订好酒店后建议换成准确坐标。");return;}
+ if(t.id==="pendNo"){S.pending=null;renderMap();return;}
+ if(t.id==="customGo"){
+  const raw=$("#customInput").value,c=parseCoords(raw),o=$("#customOut");
+  if(!c){o.innerHTML=`<div class="msg err">${esc(parseError(raw))}</div>`;return;}
+  S.sel=c;S.pending=null;o.innerHTML="";renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
+});
+function selectNear(btn){const pn=btn.parentElement.querySelector(".pn");if(!pn)return;const r=document.createRange();r.selectNodeContents(pn);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="已选中，可长按复制";}
+
+$("#map").addEventListener("click",e=>{
+ const g=e.target.closest("[data-id]");
+ if(g){S.sel=g.dataset.id;S.pending=null;renderMap();return;}
+ const p=svgPoint(e);
+ S.pending={lat:MAP.lat0-p.y/MAP.H*(MAP.lat0-MAP.lat1),lng:MAP.lng0+p.x/MAP.W*(MAP.lng1-MAP.lng0)};renderMap();
+});
+$("#foodNear").addEventListener("change",e=>{S.foodNear=e.target.checked;renderFood();});
+$("#sightNear").addEventListener("change",e=>{S.sightNear=e.target.checked;renderSights();});
+$("#q").addEventListener("input",e=>{S.q=e.target.value;renderResults();});
+
+/* ---------- offline (PWA) ---------- */
+function offlineStatus(text,kind){const el=$("#offlineStatus");if(el){el.textContent=text;el.className="msg "+kind;}}
+(function(){
+ const standalone=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+ if(!("serviceWorker" in navigator)){offlineStatus("这个浏览器不能离线保存。请用 iPhone 的 Safari 或安卓的 Chrome 打开。","err");return;}
+ navigator.serviceWorker.register("./sw.js")
+  .then(()=>navigator.serviceWorker.ready)
+  .then(()=>offlineStatus(standalone?"已保存到手机，没网也能打开。":"已保存。添加到主屏幕后，从图标打开一次，就可以离线使用。","ok"))
+  .catch(()=>offlineStatus("离线保存没成功。请确认是用 Safari 或 Chrome 打开的 https 网址。","err"));
+})();
+
+/* ---------- boot ---------- */
+setTab(S.tab);
+renderAll();
+</script>
+
+</body>
+</html>
